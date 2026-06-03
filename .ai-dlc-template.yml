@@ -1,0 +1,25 @@
+template:
+  name: "ai-dlc-template"
+  source: "https://github.com/miraitechnologies/ai_dlc_template.git"
+  applied_version: "v0.2.1"
+  applied_commit: "unknown"
+  sync_tool: "copier"
+  ownership_policy_version: "v0.2.0"
+  ownership_policy: "docs/00-methodology/template_ownership.md"
+project:
+  name: "Agent-memory"
+  intent: "It's agentic memory system for any LLM"
+sync_rules:
+  preserve:
+    - "README.md"
+    - ".gitignore"
+    - "PROJECT_STATUS.md"
+    - "session-logs/*.md"
+    - "!session-logs/README.md"
+    - "src/**"
+    - "tests/**"
+  template_owned:
+    - "session-logs/README.md"
+  manual_merge:
+    - "AGENTS.md"
+  gitignore_recommendations: "docs/00-methodology/gitignore_recommendations.md"

@@ -1,0 +1,16 @@
+# Local Python and test caches
+__pycache__/
+*.py[cod]
+.pytest_cache/
+.ruff_cache/
+.mypy_cache/
+
+# Local environment files
+.env
+.env.*
+!.env.example
+
+# Operating-system noise
+.DS_Store
+Thumbs.db
+

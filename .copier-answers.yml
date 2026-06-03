@@ -1,0 +1,8 @@
+# Changes here will be overwritten by Copier; NEVER EDIT MANUALLY.
+_commit: v0.2.1
+_src_path: https://github.com/miraitechnologies/ai_dlc_template.git
+project_intent: It's agentic memory system for any LLM
+project_name: Agent-memory
+template_commit: unknown
+template_source: https://github.com/miraitechnologies/ai_dlc_template.git
+template_version: v0.2.1
