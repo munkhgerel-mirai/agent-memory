@@ -6,24 +6,24 @@ Use this checklist immediately after cloning the template.
 
 ## Project Identity
 
-- [ ] Replace `<PROJECT_NAME>` and `<INTENT>` in project identity files and generated project artifacts
-- [ ] Leave reusable `*_TEMPLATE.md` placeholders intact
-- [ ] Set repository name and default branch
+- [x] Replace project name and intent in active project identity files and generated project artifacts available at setup
+- [x] Leave reusable `*_TEMPLATE.md` placeholders intact
+- [x] Set repository name and default branch
 
 ## Process Setup
 
-- [ ] Read `AGENTS.md` and confirm plan-first workflow
-- [ ] Review skill pack in `docs/00-methodology/01-skills/`
-- [ ] Review template ownership rules in `docs/00-methodology/template_ownership.md`
-- [ ] Use `ai-dlc-setup` to create the initial setup plan in `docs/02-construction/02-design-plan/setup_plan.md`
-- [ ] Get approval before executing
+- [x] Read `AGENTS.md` and confirm plan-first workflow
+- [x] Review skill pack in `docs/00-methodology/01-skills/`
+- [x] Review template ownership rules in `docs/00-methodology/template_ownership.md`
+- [x] Use `ai-dlc-setup` to create the initial setup plan in `docs/02-construction/02-design-plan/setup_plan.md`
+- [x] Get approval before executing
 
 ## Documentation
 
 - [ ] Update `README.md`
-- [ ] Preserve `README.md` during future template upgrades unless a human explicitly approves a project-specific edit
-- [ ] Update `PROJECT_STATUS.md`
-- [ ] Preserve existing `.gitignore`; apply `docs/00-methodology/gitignore_recommendations.md` entries only after approval
+- [x] Preserve `README.md` during future template upgrades unless a human explicitly approves a project-specific edit
+- [x] Update `PROJECT_STATUS.md`
+- [x] Preserve existing `.gitignore`; apply `docs/00-methodology/gitignore_recommendations.md` entries only after approval
 - [ ] Add a license file if required
 
 ## Code Skeleton

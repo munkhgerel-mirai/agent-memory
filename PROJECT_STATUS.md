@@ -1,40 +1,42 @@
-# <PROJECT_NAME> Project Status
+# Agent-memory Project Status
 
-**Last Updated:** <YYYY-MM-DD>
+**Last Updated:** 2026-06-03
 
 ---
 
 ## Project Goal
 
-<INTENT>
+It's agentic memory system for any LLM
 
 ---
 
 ## Current Status
 
 **Phase:** SETUP  
-**Status:** NOT STARTED
+**Status:** VALIDATION COMPLETE - READY FOR INCEPTION PLANNING
 
 ---
 
 ## Recent Decisions
 
-- No project decisions recorded yet.
+- Setup plan approved by the user on 2026-06-03.
+- Active project identity placeholders were replaced with approved template metadata.
+- Reusable `*_TEMPLATE.md` placeholders remain intact for future generated artifacts.
+- Setup validation completed and recorded in `docs/00-methodology/setup_validation.md`.
 
 ---
 
 ## Next Steps
 
-1. Replace project identity placeholders in active project-specific artifacts.
-2. Run `ai-dlc-setup` to validate project readiness.
-3. Begin `ai-dlc-inception` after setup validation is approved.
-4. Record future project session history in `session-logs/`.
+1. Review `docs/00-methodology/setup_validation.md`.
+2. Begin `ai-dlc-inception` with a plan in `docs/01-inception/99-plans/`.
+3. Keep project-specific generated artifacts under the approved `docs/` phase folders.
+4. Replace placeholder source and test skeletons only through an approved construction/code-generation plan.
 
 ---
 
 ## Risks / Blockers
 
-- Project-specific placeholders have not been replaced.
-- Setup validation has not been completed.
-- Git readiness has not been checked for this project clone.
+- `README.md` still presents the repository as the AI-DLC template and should be made project-specific before external use.
+- `src/placeholder_app.py` and `tests/test_placeholder.py` remain template skeletons by design.
 - Technology decisions require a recorded Human Selection Gate before ADR approval or downstream use.

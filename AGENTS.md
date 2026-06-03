@@ -1,4 +1,4 @@
-# <PROJECT_NAME> - AI-DLC Agent Guide
+# Agent-memory - AI-DLC Agent Guide
 
 ## Purpose
 
@@ -92,13 +92,9 @@ On fresh clones, `session-logs/` may contain only this README. In that case, rec
 
 ---
 
-## Placeholders
+## Placeholder Policy
 
-Replace any placeholders such as:
-- `<PROJECT_NAME>`
-- `<INTENT>`
-- `<UNIT_NAME>`
-- `<DOMAIN_ENTITY>`
+Active project identity placeholders were replaced during setup. Reusable `*_TEMPLATE.md` files may intentionally retain placeholder syntax until they are copied into generated project artifacts. Replace placeholder syntax in generated project artifacts before approval.
 
 ---
 

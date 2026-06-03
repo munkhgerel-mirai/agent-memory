@@ -3,7 +3,7 @@
 **Project:** Agent-memory
 **Date:** 2026-06-03
 **Setup Mode:** Audit
-**Approval Status:** Pending human approval
+**Approval Status:** Approved by user on 2026-06-03
 
 ---
 
@@ -42,20 +42,20 @@ Human approval of this plan is required before executing setup changes, includin
 
 ## Execution Checklist
 
-- [ ] Record explicit approval to execute this setup plan.
-- [ ] Confirm setup mode remains `audit` or document any human-approved change to `initialize` or `repair`.
-- [ ] Confirm project name and draft intent from `.ai-dlc-template.yml` and `.copier-answers.yml`.
-- [ ] Validate required root artifacts and document present or missing status.
-- [ ] Validate required AI-DLC phase folders and document present or missing status.
-- [ ] Validate expected AI-DLC skill pack files.
-- [ ] Validate expected active reusable `_TEMPLATE.md` files.
-- [ ] Audit unresolved placeholders and classify each as active project identity debt, reusable template placeholder, skill/example placeholder, or historical record.
-- [ ] Decide which active project identity placeholders should be replaced now and which should be deferred.
-- [ ] Check git readiness with `git status --short` and `git log --oneline -10`.
-- [ ] Create `docs/00-methodology/setup_validation.md` from `docs/00-methodology/setup_validation_TEMPLATE.md`.
-- [ ] Update `PROJECT_STATUS.md` to reflect setup validation state and remaining blockers.
-- [ ] Write or update a session log under `session-logs/` with `Skills Used`.
-- [ ] Review the resulting diff and verification evidence before requesting inception approval.
+- [x] Record explicit approval to execute this setup plan.
+- [x] Confirm setup mode remains `audit` or document any human-approved change to `initialize` or `repair`.
+- [x] Confirm project name and draft intent from `.ai-dlc-template.yml` and `.copier-answers.yml`.
+- [x] Validate required root artifacts and document present or missing status.
+- [x] Validate required AI-DLC phase folders and document present or missing status.
+- [x] Validate expected AI-DLC skill pack files.
+- [x] Validate expected active reusable `_TEMPLATE.md` files.
+- [x] Audit unresolved placeholders and classify each as active project identity debt, reusable template placeholder, skill/example placeholder, or historical record.
+- [x] Decide which active project identity placeholders should be replaced now and which should be deferred.
+- [x] Check git readiness with `git status --short` and `git log --oneline -10`.
+- [x] Create `docs/00-methodology/setup_validation.md` from `docs/00-methodology/setup_validation_TEMPLATE.md`.
+- [x] Update `PROJECT_STATUS.md` to reflect setup validation state and remaining blockers.
+- [x] Write or update a session log under `session-logs/` with `Skills Used`.
+- [x] Review the resulting diff and verification evidence before requesting inception approval.
 
 ---
 
@@ -69,5 +69,15 @@ Human approval of this plan is required before executing setup changes, includin
 
 ## Open Questions
 
-- Should active project identity placeholders be replaced with `Agent-memory` and `It's agentic memory system for any LLM` during setup execution?
-- Should setup remain audit-only, or should approved execution include repair of active project-owned placeholders?
+- Resolved 2026-06-03: active project identity placeholders in current project-specific artifacts were replaced using approved template metadata.
+- Resolved 2026-06-03: setup remained audit-mode validation with targeted repair of active project identity placeholders.
+
+---
+
+## Execution Notes
+
+- 2026-06-03: User approved the setup plan in chat.
+- 2026-06-03: Git baseline before execution was clean at `5abc969`.
+- 2026-06-03: Required root artifacts, phase folders, skill pack files, and active reusable templates were present.
+- 2026-06-03: Reusable `*_TEMPLATE.md` placeholders were preserved intentionally.
+- 2026-06-03: Diff and placeholder-scan evidence reviewed before commit.
