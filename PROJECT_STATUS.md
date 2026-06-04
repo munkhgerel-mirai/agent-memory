@@ -17,8 +17,8 @@ Key Objectives:
 
 ## Current Status
 
-**Phase:** CONSTRUCTION - LOGICAL DESIGN  
-**Status:** LOGICAL DESIGN APPROVED - READY FOR NEXT CONSTRUCTION GATE PLANNING
+**Phase:** CONSTRUCTION - CODE GENERATION PLANNING  
+**Status:** CODE GENERATION PLAN CREATED - PENDING HUMAN REVIEW
 
 ---
 
@@ -54,15 +54,16 @@ Key Objectives:
 - Unit Logical Design artifacts generated for UNIT-01 through UNIT-05.
 - Cross-Unit system architecture synthesis generated in `docs/02-construction/01-architecture/system_architecture.md`.
 - System architecture and all Unit Logical Design artifacts reviewed and approved by the user on 2026-06-05.
+- Code Generation planning started with `docs/02-construction/02-design-plan/code_generation_plan.md`.
 
 ---
 
 ## Next Steps
 
-1. Begin the next AI-DLC construction gate with a plan before implementation.
-2. Use approved Logical Design artifacts and `docs/02-construction/01-architecture/system_architecture.md` as downstream inputs.
-3. Resolve or explicitly defer relevant Logical Design open questions during the next planning gate.
-4. Keep code, tests, dependency installation, runtime-structure changes, and deployment work blocked until downstream plans are approved.
+1. Review `docs/02-construction/02-design-plan/code_generation_plan.md`.
+2. Approve the Code Generation plan or request changes.
+3. After approval, execute only the first implementation slice described in the plan.
+4. Keep code, tests, dependency installation, runtime-structure changes, and deployment work blocked until this plan or a downstream plan is approved.
 
 ---
 
@@ -71,5 +72,5 @@ Key Objectives:
 - `README.md` still presents the repository as the AI-DLC template and should be made project-specific before external use.
 - `src/placeholder_app.py` and `src/tests/test_placeholder.py` remain template skeletons by design.
 - Future technology changes require a recorded Human Selection Gate before ADR approval or downstream use.
-- Code and test generation remain blocked until a downstream implementation/code-generation plan is approved.
+- Code and test generation remain blocked until `docs/02-construction/02-design-plan/code_generation_plan.md` is approved.
 - Product/runtime documentation assets must not be added to root `docs/`; use `src/docs/` instead.
