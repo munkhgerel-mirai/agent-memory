@@ -3,7 +3,7 @@
 **Project:** Agent-memory
 **Date:** 2026-06-04
 **Skill:** ai-dlc-technology-decision
-**Approval Status:** Pending human review
+**Approval Status:** Approved by user on 2026-06-04
 
 ---
 
@@ -81,30 +81,30 @@ External references already mentioned by the user, such as `iii-hq/iii` and `roh
 
 ## Execution Checklist
 
-- [ ] Record explicit approval to execute this Technology Decision plan.
-- [ ] Confirm approved inputs still exist and are approved.
-- [ ] Review decision drivers from user stories, NFRs, risks, Units, Bolts, and approved Domain Design artifacts.
-- [ ] Confirm which decision areas are required now versus safe to defer.
-- [ ] Review current external references for `iii-hq/iii` and `rohitg00/agentmemory` from primary sources before relying on them.
-- [ ] Identify candidate options for TD-001, including a defer/no-decision option.
-- [ ] Compare TD-001 candidates across fit, risks, cost, reversibility, maintainability, operability, testing, and ecosystem maturity.
-- [ ] Identify candidate options for TD-002, including a defer/no-decision option.
-- [ ] Compare TD-002 candidates across local-mode independence, observability, lock-in, delivery risk, and adapter complexity.
-- [ ] Identify candidate options for TD-003, including a defer/no-decision option.
-- [ ] Compare TD-003 candidates across rebuildability, deletion/export, local-first adoption, future server migration, concurrency, cost, and privacy risk.
-- [ ] Identify candidate options for TD-004, including a defer/no-decision option.
-- [ ] Compare TD-004 candidates across privacy risk, auditability, user control, operational simplicity, and implementation complexity.
-- [ ] Identify candidate options for TD-005, including a defer/no-decision option.
-- [ ] Compare TD-005 candidates across lifecycle-authoritative ranking, retrieval quality, privacy, token cost, lock-in, and v1 delivery risk.
-- [ ] Draft recommendations for each decision area with status `Proposed` or `Deferred`.
-- [ ] Present the Human Selection Gate with candidate comparison, recommendation, and downstream authorization boundaries.
+- [x] Record explicit approval to execute this Technology Decision plan.
+- [x] Confirm approved inputs still exist and are approved.
+- [x] Review decision drivers from user stories, NFRs, risks, Units, Bolts, and approved Domain Design artifacts.
+- [x] Confirm which decision areas are required now versus safe to defer.
+- [x] Review current external references for `iii-hq/iii` and `rohitg00/agentmemory` from primary sources before relying on them.
+- [x] Identify candidate options for TD-001, including a defer/no-decision option.
+- [x] Compare TD-001 candidates across fit, risks, cost, reversibility, maintainability, operability, testing, and ecosystem maturity.
+- [x] Identify candidate options for TD-002, including a defer/no-decision option.
+- [x] Compare TD-002 candidates across local-mode independence, observability, lock-in, delivery risk, and adapter complexity.
+- [x] Identify candidate options for TD-003, including a defer/no-decision option.
+- [x] Compare TD-003 candidates across rebuildability, deletion/export, local-first adoption, future server migration, concurrency, cost, and privacy risk.
+- [x] Identify candidate options for TD-004, including a defer/no-decision option.
+- [x] Compare TD-004 candidates across privacy risk, auditability, user control, operational simplicity, and implementation complexity.
+- [x] Identify candidate options for TD-005, including a defer/no-decision option.
+- [x] Compare TD-005 candidates across lifecycle-authoritative ranking, retrieval quality, privacy, token cost, lock-in, and v1 delivery risk.
+- [x] Draft recommendations for each decision area with status `Proposed` or `Deferred`.
+- [x] Present the Human Selection Gate with candidate comparison, recommendation, and downstream authorization boundaries.
 - [ ] Record the human outcome for each decision area: Selected, Deferred, Rejected, or More Analysis Needed.
-- [ ] Create `docs/02-construction/01-architecture/technology_decisions.md` from the approved template.
-- [ ] Record ADR entries for each decision area, including alternatives, consequences, risks, reversibility, confidence, related Units/NFRs/risks/design artifacts, follow-ups, and approval status.
-- [ ] Keep ADR entries non-binding unless human selection and approval are both recorded.
-- [ ] Update `PROJECT_STATUS.md` with decision progress and remaining blockers.
-- [ ] Write or update a session log under `session-logs/` with skills used, decisions, outputs, and next steps.
-- [ ] Review verification evidence before requesting approval to use decisions in Logical Design.
+- [x] Create `docs/02-construction/01-architecture/technology_decisions.md` from the approved template.
+- [x] Record ADR entries for each decision area, including alternatives, consequences, risks, reversibility, confidence, related Units/NFRs/risks/design artifacts, follow-ups, and approval status.
+- [x] Keep ADR entries non-binding unless human selection and approval are both recorded.
+- [x] Update `PROJECT_STATUS.md` with decision progress and remaining blockers.
+- [x] Write or update a session log under `session-logs/` with skills used, decisions, outputs, and next steps.
+- [x] Review verification evidence before requesting approval to use decisions in Logical Design.
 
 ---
 
@@ -155,3 +155,7 @@ AI may recommend, but must not select on the human's behalf.
 ## Execution Notes
 
 - 2026-06-04: Technology Decision plan created and left pending human review.
+- 2026-06-04: User approved the Technology Decision plan in chat.
+- 2026-06-04: Reviewed primary sources for `iii-hq/iii` and `rohitg00/agentmemory`.
+- 2026-06-04: Created `docs/02-construction/01-architecture/technology_decisions.md` with Proposed ADR entries and Pending Selection gates.
+- 2026-06-04: Human Selection Gate is pending; no decision is binding yet.

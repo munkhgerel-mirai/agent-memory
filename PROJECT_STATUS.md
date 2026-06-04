@@ -17,8 +17,8 @@ Key Objectives:
 
 ## Current Status
 
-**Phase:** CONSTRUCTION - TECHNOLOGY DECISION PLANNING  
-**Status:** TECHNOLOGY DECISION PLAN CREATED - PENDING HUMAN REVIEW
+**Phase:** CONSTRUCTION - TECHNOLOGY DECISION  
+**Status:** HUMAN SELECTION GATE PRESENTED - PENDING HUMAN SELECTION
 
 ---
 
@@ -45,15 +45,17 @@ Key Objectives:
 - Technology-agnostic Domain Design artifacts generated for UNIT-01 through UNIT-05.
 - Domain Design artifacts reviewed and approved by the user on 2026-06-04.
 - Technology Decision planning started with `docs/02-construction/02-design-plan/technology_decision_plan.md`.
+- Technology Decision plan approved by the user on 2026-06-04.
+- Proposed technology ADRs created in `docs/02-construction/01-architecture/technology_decisions.md`; all remain pending human selection and approval.
 
 ---
 
 ## Next Steps
 
-1. Review `docs/02-construction/02-design-plan/technology_decision_plan.md`.
-2. Approve or request changes before candidate comparison or ADR creation.
-3. After approval, execute the Human Selection Gate for implementation language, iii-engine status, storage profile, raw observation retention, and embeddings.
-4. Begin `ai-dlc-logical-design` only after required technology/policy decisions are recorded or explicitly deferred.
+1. Review `docs/02-construction/01-architecture/technology_decisions.md`.
+2. Record Human Selection Gate outcomes for TD-001 through TD-005: Selected, Deferred, Rejected, or More Analysis Needed.
+3. After human selection and approval, update ADR approval records and downstream authorization boundaries.
+4. Begin `ai-dlc-logical-design` only after required technology/policy decisions are approved or explicitly deferred.
 5. Keep code and tests blocked until Logical Design artifacts and implementation plans are approved.
 
 ---
@@ -62,8 +64,7 @@ Key Objectives:
 
 - `README.md` still presents the repository as the AI-DLC template and should be made project-specific before external use.
 - `src/placeholder_app.py` and `src/tests/test_placeholder.py` remain template skeletons by design.
-- Technology Decision execution is blocked until the Technology Decision plan is approved.
-- Technology decisions require a recorded Human Selection Gate before ADR approval or downstream use.
+- Technology decisions require recorded Human Selection Gate outcomes before ADR approval or downstream use.
 - Logical Design execution is blocked until a Logical Design plan is created and approved.
 - Code and test generation remain blocked until Logical Design artifacts are approved.
 - Implementation technology choices remain open: language/runtime surface, iii-engine required-vs-optional status, raw observation retention, and optional embeddings.
