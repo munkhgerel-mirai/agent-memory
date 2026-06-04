@@ -97,3 +97,4 @@ This plan is an approval gate. Do not create Logical Design artifacts, system ar
 - 2026-06-04: Created `docs/02-construction/01-architecture/system_architecture.md` for cross-Unit component context, dependency direction, data flow, decisions, and NFR/risk coverage.
 - 2026-06-04: Verified each Unit Logical Design artifact includes required sections, approved Domain Design trace, NFR/risk references, and approved Technology Decision trace.
 - 2026-06-04: Updated `PROJECT_STATUS.md` and wrote `session-logs/20260604_1523_codex_logical-design-artifacts.md`.
+- 2026-06-05: User approved `docs/02-construction/01-architecture/system_architecture.md` and all Unit Logical Design artifacts.

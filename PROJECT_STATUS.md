@@ -1,6 +1,6 @@
 # Agent-memory Project Status
 
-**Last Updated:** 2026-06-04
+**Last Updated:** 2026-06-05
 
 ---
 
@@ -18,7 +18,7 @@ Key Objectives:
 ## Current Status
 
 **Phase:** CONSTRUCTION - LOGICAL DESIGN  
-**Status:** LOGICAL DESIGN ARTIFACTS CREATED - PENDING HUMAN REVIEW
+**Status:** LOGICAL DESIGN APPROVED - READY FOR NEXT CONSTRUCTION GATE PLANNING
 
 ---
 
@@ -53,16 +53,16 @@ Key Objectives:
 - Logical Design plan approved by the user on 2026-06-04.
 - Unit Logical Design artifacts generated for UNIT-01 through UNIT-05.
 - Cross-Unit system architecture synthesis generated in `docs/02-construction/01-architecture/system_architecture.md`.
+- System architecture and all Unit Logical Design artifacts reviewed and approved by the user on 2026-06-05.
 
 ---
 
 ## Next Steps
 
-1. Review the Unit Logical Design artifacts in `docs/02-construction/03-domain-design/`.
-2. Review `docs/02-construction/01-architecture/system_architecture.md`.
-3. Approve the Logical Design artifacts or request changes.
-4. After Logical Design approval, begin the next AI-DLC construction gate with a plan before implementation.
-5. Keep code, tests, dependency installation, runtime-structure changes, and deployment work blocked until downstream plans are approved.
+1. Begin the next AI-DLC construction gate with a plan before implementation.
+2. Use approved Logical Design artifacts and `docs/02-construction/01-architecture/system_architecture.md` as downstream inputs.
+3. Resolve or explicitly defer relevant Logical Design open questions during the next planning gate.
+4. Keep code, tests, dependency installation, runtime-structure changes, and deployment work blocked until downstream plans are approved.
 
 ---
 
@@ -71,6 +71,5 @@ Key Objectives:
 - `README.md` still presents the repository as the AI-DLC template and should be made project-specific before external use.
 - `src/placeholder_app.py` and `src/tests/test_placeholder.py` remain template skeletons by design.
 - Future technology changes require a recorded Human Selection Gate before ADR approval or downstream use.
-- Logical Design artifacts are pending human review and approval.
-- Code and test generation remain blocked until Logical Design artifacts are approved and a downstream implementation/code-generation plan is approved.
+- Code and test generation remain blocked until a downstream implementation/code-generation plan is approved.
 - Product/runtime documentation assets must not be added to root `docs/`; use `src/docs/` instead.
