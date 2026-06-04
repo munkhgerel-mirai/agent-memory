@@ -1,0 +1,134 @@
+@startuml system_architecture
+title Agent-memory System Architecture
+
+skinparam componentStyle rectangle
+skinparam shadowing false
+skinparam packageStyle rectangle
+skinparam ArrowColor #334155
+skinparam defaultFontName Arial
+
+actor "Solo Developer" as solo
+actor "Workspace User" as workspace_user
+actor "Team User" as team_user
+actor "Coding Agent" as coding_agent
+actor "Local Operator" as operator
+
+rectangle "Optional iii-engine Runtime" as iii_runtime <<optional>>
+
+package "Agent-memory Boundary" {
+  package "Integration Surfaces (UNIT-03)" as integration {
+    [MCP Surface] as mcp
+    [CLI Surface] as cli
+    [Local API Surface] as api
+    [Capability Router] as router
+    [Memory Job Coordinator] as jobs
+    [iii Runtime Adapter] as iii_adapter <<optional>>
+  }
+
+  package "Lifecycle Memory Core (UNIT-01)" as core {
+    [Category Catalog] as category
+    [Artifact Classifier] as classifier
+    [Lifecycle Memory Registry] as registry
+    [Lifecycle Relationship Catalog] as relationships
+    [Historical Record Policy] as historical
+  }
+
+  package "Privacy, Governance, Operations (UNIT-04)" as governance {
+    [Governance Policy Engine] as policy
+    [Sensitive Content Guard] as guard
+    [Provenance Ledger] as provenance
+    [Retention Policy Engine] as retention
+    [Memory Operation Coordinator] as ops
+  }
+
+  package "Local Storage and Retrieval (UNIT-02)" as storage {
+    [Durable Source Reader] as source_reader
+    [Rebuild Coordinator] as rebuild
+    database "Durable Markdown\n+ JSONL Events" as durable
+    database "Rebuildable Local Index\n(SQLite/FTS-style projection)" as index
+    [Retrieval Orchestrator] as retrieval
+    [Ranking Engine] as ranking
+    [Context Pack Builder] as packer
+  }
+
+  package "Optional Semantic Retrieval (UNIT-05)" as semantic {
+    [Semantic Profile Manager] as semantic_profile <<optional>>
+    [Semantic Provider Port] as semantic_provider <<optional>>
+    database "Semantic Index Port\n(derived future profile)" as semantic_index <<optional>>
+    [Retrieval Fusion Service] as fusion <<optional>>
+  }
+}
+
+solo --> cli : local commands
+workspace_user --> cli : workspace operations
+team_user --> api : programmatic workspace use
+coding_agent --> mcp : context/query tools
+operator --> cli : inspect/rebuild/export/delete
+
+mcp --> router : capability request
+cli --> router : capability request
+api --> router : capability request
+router --> retrieval : context/query
+router --> ops : governed write/export/delete
+router --> jobs : long-running jobs
+
+jobs --> rebuild : rebuild job
+jobs --> ops : export/delete job
+iii_runtime --> iii_adapter : triggers/observations
+iii_adapter --> jobs : optional job trigger
+jobs --> iii_adapter : optional observation
+
+source_reader --> durable : scan/read
+rebuild --> source_reader : observe sources
+rebuild --> classifier : classify artifact
+classifier --> category : validate category
+classifier --> registry : classified memory candidate
+registry --> historical : approval/history rules
+registry --> relationships : traceability edges
+
+classifier --> policy : write eligibility
+registry --> policy : approval/visibility metadata
+policy --> guard : secret/PII review
+policy --> provenance : provenance required
+policy --> retention : retention decision
+ops --> policy : operation decision
+
+rebuild --> index : rebuild projection
+retrieval --> index : search candidates
+retrieval --> policy : eligibility before ranking
+retrieval --> ranking : eligible candidates
+ranking --> relationships : lifecycle graph signals
+ranking --> packer : ranked candidates
+packer --> router : bounded context pack
+
+retrieval --> semantic_profile : optional profile check
+semantic_profile --> semantic_provider : optional query embedding
+semantic_provider --> semantic_index : optional semantic lookup
+semantic_index --> fusion : semantic candidates
+fusion --> policy : governance eligibility
+fusion --> ranking : secondary signal only
+ops --> semantic_index : delete derived entries
+
+note right of durable
+Authoritative durable sources.
+The local index is rebuildable,
+not the source of truth.
+end note
+
+note right of policy
+Governance applies before durable
+storage and before final retrieval
+packing.
+end note
+
+note bottom of fusion
+Semantic retrieval is optional,
+secondary, and lifecycle-authoritative.
+end note
+
+legend right
+  Solid arrows = logical dependency / call direction
+  <<optional>> = adapter or extension that must not be required for core local mode
+endlegend
+
+@enduml

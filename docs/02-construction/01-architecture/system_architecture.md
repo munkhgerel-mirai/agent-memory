@@ -27,6 +27,8 @@ Pending review. Generated from the approved Logical Design plan after user appro
 
 ## Components
 
+PlantUML source diagram: `docs/02-construction/01-architecture/system_architecture.puml`.
+
 | Component | Responsibility | Owner | Related Unit | Key Interfaces |
 |-----------|----------------|-------|--------------|----------------|
 | Category Catalog | Defines approved AI-DLC-native memory categories and extension state. | Core domain team | UNIT-01 | Category validation and description ports. |
