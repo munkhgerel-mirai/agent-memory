@@ -1,0 +1,24 @@
+# Risk Register
+
+**Project:** Agent-memory
+
+## Approval Status
+
+Pending human review. Generated from the approved Inception plan and approved Mob Elaboration answers.
+
+| ID | Category | Risk | Likelihood | Impact | Mitigation | Trigger / Signal | Owner | Status |
+|----|----------|------|------------|--------|------------|------------------|-------|--------|
+| R-001 | Product-scope | The product becomes a generic agent memory clone instead of AI-DLC-native lifecycle memory. | Medium | High | Anchor v1 memory categories and retrieval ranking to AI-DLC artifacts, approval gates, and lifecycle traceability. | Stories or schema drift toward generic semantic notes without lifecycle metadata. | Product / codex | Open |
+| R-002 | Technical | SQLite concurrency limits may hurt future shared team-server use. | Medium | Medium | Treat SQLite as v1 local workspace index/cache and define storage interfaces for future Postgres profile. | Multiple agents/users contend on writes or require remote access control. | Engineering | Open |
+| R-003 | Technical | Vector retrieval could return semantically similar but lifecycle-incorrect memories. | Medium | High | Keep embeddings optional and secondary; rank approved lifecycle artifacts and explicit graph links above vector matches. | Vector result conflicts with approved plan/decision or lacks provenance. | Engineering | Open |
+| R-004 | Security | Secrets or sensitive data could be persisted in durable memory. | Medium | High | Add redaction/blocking before durable writes; include visibility, approval status, and retention policy on memory. | Secret-like strings appear in memory export, SQLite index, JSONL log, or context pack. | Security / Engineering | Open |
+| R-005 | Compliance | Delete/export behavior may miss derived indexes or future vector entries. | Medium | High | Define deletion as purge from active memory, FTS index, lifecycle edges, and optional vector index; test end-to-end. | Deleted memory still appears in retrieval or export. | Engineering | Open |
+| R-006 | Operational | iii-engine integration could become a hard dependency too early. | Medium | Medium | Keep iii-engine as a first-class adapter while preserving core domain and local mode independence. | Local mode cannot run without iii-engine installed/configured. | Engineering | Open |
+| R-007 | Delivery | Scope expands into hosted SaaS, enterprise permissions, or full graph UI before core v1 is proven. | Medium | High | Keep hosted SaaS, complex tenancy, and full graph UI explicitly out of v1 scope. | Roadmap prioritizes infrastructure/platform work before startup context restoration works. | Product / Engineering | Open |
+| R-008 | Product-scope | 2000-token context pack may still omit important context for complex tasks. | Medium | Medium | Provide focused retrieval and explicit expanded modes for handoff, audit, and deep review. | Agent repeatedly asks for missing rationale or makes decisions from incomplete context. | Product / Engineering | Open |
+| R-009 | Product-scope | 2000-token context pack may include too much irrelevant context if ranking is weak. | Medium | Medium | Use metadata filters, lifecycle graph, approval status, and token-aware packing; test with representative scenarios. | Context pack includes stale/draft/unrelated memory and misses active plan details. | Engineering | Open |
+| R-010 | Technical | Markdown, JSONL, and SQLite can diverge if sync/indexing is not deterministic. | Medium | High | Use append-only events, deterministic rebuild, schema migrations, and validation checks. | Rebuild creates different results from current SQLite index. | Engineering | Open |
+| R-011 | Delivery | Open technology choices delay downstream design. | Medium | Medium | Run AI-DLC technology decision after Inception approval for implementation language, iii-engine role, storage profile, and embedding approach. | Domain/logical design needs binding technology details. | Human / codex | Open |
+| R-012 | Operational | Raw observations may grow too large or retain sensitive material too long. | Medium | Medium | Define raw observation TTL and summarize/consolidate into approved lifecycle memories. | JSONL grows quickly or contains sensitive raw interaction content. | Workspace operator / Engineering | Open |
+| R-013 | Security | Shared workspace memory may expose private solo/developer context to team users. | Medium | High | Implement visibility scopes: private, workspace, team-shared; default to least sharing for uncertain memory. | Private memory appears in team context pack. | Security / Engineering | Open |
+| R-014 | Delivery | README and source/test skeletons remain template-oriented, confusing contributors. | High | Low | Update README and replace skeletons through approved downstream construction/code-generation plans. | New contributor sees template wording or placeholder tests. | Human / codex | Open |

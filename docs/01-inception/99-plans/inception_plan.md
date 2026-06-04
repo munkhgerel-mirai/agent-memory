@@ -39,18 +39,18 @@ Until approval is recorded, no requirements artifacts, user stories, NFRs, risk 
 ## Execution Checklist
 
 - [x] Record explicit approval to execute this Inception plan.
-- [ ] Confirm the working intent and whether it should be reworded before artifact generation.
-- [ ] Ask categorized Mob Elaboration questions covering users and stakeholders, business outcomes, scope and non-scope, workflows and edge cases, data and integrations, constraints and assumptions, and compliance or policy concerns.
-- [ ] Document answers, assumptions, and open questions in `docs/01-inception/01-intent-clarification/intent_clarification.md`.
-- [ ] Review the clarified intent with the human and record approval status or open corrections.
-- [ ] Write prioritized user stories with business value, dependencies, assumptions, and testable acceptance criteria in `docs/01-inception/02-user-stories/all_user_stories.md`.
-- [ ] Define NFRs in `docs/01-inception/03-nfrs/nfrs.md`, covering performance, reliability, usability, security, scalability, compliance, operability, maintainability, privacy, and cost.
-- [ ] Mark any non-applicable or deferred NFR category with a rationale and human validation.
-- [ ] Create `docs/01-inception/04-risks/risk_register.md` with technical, product/scope, security, compliance, operational, and delivery risks.
-- [ ] Link stories, NFRs, and risks back to clarified intent, outcomes, assumptions, and open questions.
-- [ ] Update `PROJECT_STATUS.md` with Inception progress and remaining blockers.
-- [ ] Update the session log with skills used, decisions, completed artifacts, and next steps.
-- [ ] Review generated artifacts and verification evidence before requesting approval to move to Units.
+- [x] Confirm the working intent and whether it should be reworded before artifact generation.
+- [x] Ask categorized Mob Elaboration questions covering users and stakeholders, business outcomes, scope and non-scope, workflows and edge cases, data and integrations, constraints and assumptions, and compliance or policy concerns.
+- [x] Document answers, assumptions, and open questions in `docs/01-inception/01-intent-clarification/intent_clarification.md`.
+- [x] Review the clarified intent with the human and record approval status or open corrections.
+- [x] Write prioritized user stories with business value, dependencies, assumptions, and testable acceptance criteria in `docs/01-inception/02-user-stories/all_user_stories.md`.
+- [x] Define NFRs in `docs/01-inception/03-nfrs/nfrs.md`, covering performance, reliability, usability, security, scalability, compliance, operability, maintainability, privacy, and cost.
+- [x] Mark any non-applicable or deferred NFR category with a rationale and human validation.
+- [x] Create `docs/01-inception/04-risks/risk_register.md` with technical, product/scope, security, compliance, operational, and delivery risks.
+- [x] Link stories, NFRs, and risks back to clarified intent, outcomes, assumptions, and open questions.
+- [x] Update `PROJECT_STATUS.md` with Inception progress and remaining blockers.
+- [x] Update the session log with skills used, decisions, completed artifacts, and next steps.
+- [x] Review generated artifacts and verification evidence before requesting approval to move to Units.
 
 ---
 
@@ -136,3 +136,6 @@ These questions will be asked after plan approval and answered before generating
 
 - 2026-06-04: User approved the Inception plan in chat.
 - 2026-06-04: `PROJECT_STATUS.md` contained a refined project goal at approval time; use it as the latest working intent unless corrected during Mob Elaboration.
+- 2026-06-04: User approved the open-question answers in chat.
+- 2026-06-04: Generated Inception artifacts for intent clarification, user stories, NFRs, and risks.
+- 2026-06-04: Inception artifacts are pending human review before moving to Units.
