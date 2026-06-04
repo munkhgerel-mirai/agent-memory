@@ -3,7 +3,7 @@
 **Project:** Agent-memory
 **Date:** 2026-06-04
 **Skill:** ai-dlc-domain-design
-**Approval Status:** Pending human review
+**Approval Status:** Approved by user on 2026-06-04
 
 ---
 
@@ -48,32 +48,32 @@ Do not begin Logical Design, technology selection, implementation, or test gener
 
 ## Execution Checklist
 
-- [ ] Record explicit approval to execute this Domain Design plan.
-- [ ] Confirm approved Units, stories, NFRs, risks, and Bolts are still available and approved.
-- [ ] Review DDD reference and keep the modeling vocabulary technology-agnostic.
-- [ ] Create `unit_01_lifecycle_memory_core.md` for UNIT-01.
-- [ ] Model UNIT-01 ubiquitous language, aggregates, entities, value objects, events, repository interfaces, factories, domain services, invariants, and open questions.
-- [ ] Validate UNIT-01 against US-002, US-003, NFR-004, NFR-006, NFR-015, NFR-016, R-001, and R-010.
-- [ ] Create `unit_02_local_workspace_storage_and_retrieval.md` for UNIT-02.
-- [ ] Model UNIT-02 domain behavior for durable sources, rebuildable indexes, retrieval requests, and context packs without binding storage technology.
-- [ ] Validate UNIT-02 against US-001, US-004, NFR-001, NFR-002, NFR-003, NFR-005, NFR-009, NFR-010, NFR-019, NFR-020, R-002, R-008, R-009, and R-010.
-- [ ] Create `unit_03_framework_agnostic_integration_and_runtime_adapter.md` for UNIT-03.
-- [ ] Model UNIT-03 domain behavior for framework-agnostic memory operations and optional runtime adapter boundaries without binding to iii-engine internals.
-- [ ] Validate UNIT-03 against US-005, US-007, NFR-005, NFR-013, NFR-014, NFR-015, R-006, and R-011.
-- [ ] Create `unit_04_privacy_governance_and_memory_operations.md` for UNIT-04.
-- [ ] Model UNIT-04 policy, provenance, visibility, redaction, retention, delete, and export domain concepts.
-- [ ] Validate UNIT-04 against US-006, NFR-007, NFR-008, NFR-011, NFR-012, NFR-017, NFR-018, R-004, R-005, R-012, R-013, and R-014.
-- [ ] Create `unit_05_optional_semantic_retrieval_extension.md` for UNIT-05.
-- [ ] Model UNIT-05 as an optional extension that augments, but does not override, approved lifecycle retrieval.
-- [ ] Validate UNIT-05 against US-008, NFR-010, NFR-015, NFR-020, R-003, R-008, R-009, and R-011.
-- [ ] Review cross-Unit language consistency and document bounded-context relationships.
-- [ ] Confirm each major model element links back to relevant stories, NFRs, risks, or Units.
-- [ ] Confirm repository interfaces are intent-based only and avoid database/framework operations.
-- [ ] Confirm all domain events are past-tense business facts.
-- [ ] Confirm all open questions are documented and routed to Domain Design, Logical Design, technology decision, or privacy policy as appropriate.
-- [ ] Update `PROJECT_STATUS.md` with Domain Design progress and remaining blockers.
-- [ ] Write or update a session log under `session-logs/` with skills used, decisions, outputs, and next steps.
-- [ ] Review generated Domain Design artifacts and verification evidence before requesting approval to move to Logical Design.
+- [x] Record explicit approval to execute this Domain Design plan.
+- [x] Confirm approved Units, stories, NFRs, risks, and Bolts are still available and approved.
+- [x] Review DDD reference and keep the modeling vocabulary technology-agnostic.
+- [x] Create `unit_01_lifecycle_memory_core.md` for UNIT-01.
+- [x] Model UNIT-01 ubiquitous language, aggregates, entities, value objects, events, repository interfaces, factories, domain services, invariants, and open questions.
+- [x] Validate UNIT-01 against US-002, US-003, NFR-004, NFR-006, NFR-015, NFR-016, R-001, and R-010.
+- [x] Create `unit_02_local_workspace_storage_and_retrieval.md` for UNIT-02.
+- [x] Model UNIT-02 domain behavior for durable sources, rebuildable indexes, retrieval requests, and context packs without binding storage technology.
+- [x] Validate UNIT-02 against US-001, US-004, NFR-001, NFR-002, NFR-003, NFR-005, NFR-009, NFR-010, NFR-019, NFR-020, R-002, R-008, R-009, and R-010.
+- [x] Create `unit_03_framework_agnostic_integration_and_runtime_adapter.md` for UNIT-03.
+- [x] Model UNIT-03 domain behavior for framework-agnostic memory operations and optional runtime adapter boundaries without binding to iii-engine internals.
+- [x] Validate UNIT-03 against US-005, US-007, NFR-005, NFR-013, NFR-014, NFR-015, R-006, and R-011.
+- [x] Create `unit_04_privacy_governance_and_memory_operations.md` for UNIT-04.
+- [x] Model UNIT-04 policy, provenance, visibility, redaction, retention, delete, and export domain concepts.
+- [x] Validate UNIT-04 against US-006, NFR-007, NFR-008, NFR-011, NFR-012, NFR-017, NFR-018, R-004, R-005, R-012, R-013, and R-014.
+- [x] Create `unit_05_optional_semantic_retrieval_extension.md` for UNIT-05.
+- [x] Model UNIT-05 as an optional extension that augments, but does not override, approved lifecycle retrieval.
+- [x] Validate UNIT-05 against US-008, NFR-010, NFR-015, NFR-020, R-003, R-008, R-009, and R-011.
+- [x] Review cross-Unit language consistency and document bounded-context relationships.
+- [x] Confirm each major model element links back to relevant stories, NFRs, risks, or Units.
+- [x] Confirm repository interfaces are intent-based only and avoid database/framework operations.
+- [x] Confirm all domain events are past-tense business facts.
+- [x] Confirm all open questions are documented and routed to Domain Design, Logical Design, technology decision, or privacy policy as appropriate.
+- [x] Update `PROJECT_STATUS.md` with Domain Design progress and remaining blockers.
+- [x] Write or update a session log under `session-logs/` with skills used, decisions, outputs, and next steps.
+- [x] Review generated Domain Design artifacts and verification evidence before requesting approval to move to Logical Design.
 
 ---
 
@@ -129,3 +129,6 @@ Do not begin Logical Design, technology selection, implementation, or test gener
 ## Execution Notes
 
 - 2026-06-04: Domain Design plan created and left pending human review.
+- 2026-06-04: User approved the Domain Design plan in chat.
+- 2026-06-04: Generated one technology-agnostic Domain Design artifact for each approved Unit.
+- 2026-06-04: Domain Design artifacts are pending human review before Logical Design.

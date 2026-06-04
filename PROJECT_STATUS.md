@@ -17,8 +17,8 @@ Key Objectives:
 
 ## Current Status
 
-**Phase:** CONSTRUCTION - DOMAIN DESIGN PLANNING  
-**Status:** DOMAIN DESIGN PLAN CREATED - PENDING HUMAN REVIEW
+**Phase:** CONSTRUCTION - DOMAIN DESIGN  
+**Status:** DOMAIN DESIGN ARTIFACTS GENERATED - PENDING HUMAN REVIEW
 
 ---
 
@@ -41,16 +41,19 @@ Key Objectives:
 - Repository content boundary clarified: root `docs/` is reserved for Agent-memory development AI-DLC artifacts; Agent-memory product templates, classified Markdown examples, and fixtures belong under `src/docs/`.
 - Units composition and Bolts plan reviewed and approved by the user on 2026-06-04.
 - Domain Design planning started with `docs/02-construction/02-design-plan/domain_design_plan.md`.
+- Domain Design plan approved by the user on 2026-06-04.
+- Technology-agnostic Domain Design artifacts generated for UNIT-01 through UNIT-05.
 
 ---
 
 ## Next Steps
 
-1. Review `docs/02-construction/02-design-plan/domain_design_plan.md`.
-2. Approve or request changes before Domain Design execution.
-3. After approval, generate one technology-agnostic Domain Design artifact per approved Unit.
-4. Run a technology decision before binding implementation language, iii-engine status, storage profile, or embeddings.
-5. Keep Logical Design, code, and tests blocked until Domain Design artifacts are approved.
+1. Review `docs/02-construction/03-domain-design/unit_01_lifecycle_memory_core.md`.
+2. Review `docs/02-construction/03-domain-design/unit_02_local_workspace_storage_and_retrieval.md`.
+3. Review `docs/02-construction/03-domain-design/unit_03_framework_agnostic_integration_and_runtime_adapter.md`.
+4. Review `docs/02-construction/03-domain-design/unit_04_privacy_governance_and_memory_operations.md`.
+5. Review `docs/02-construction/03-domain-design/unit_05_optional_semantic_retrieval_extension.md`.
+6. Approve or request changes before moving to Logical Design or technology decision.
 
 ---
 
@@ -59,7 +62,6 @@ Key Objectives:
 - `README.md` still presents the repository as the AI-DLC template and should be made project-specific before external use.
 - `src/placeholder_app.py` and `src/tests/test_placeholder.py` remain template skeletons by design.
 - Technology decisions require a recorded Human Selection Gate before ADR approval or downstream use.
-- Domain Design execution is blocked until the Domain Design plan is approved.
 - Logical Design, code, and test generation remain blocked until Domain Design artifacts are approved.
 - Implementation technology choices remain open: language/runtime surface, iii-engine required-vs-optional status, raw observation retention, and optional embeddings.
 - Product/runtime documentation assets must not be added to root `docs/`; use `src/docs/` instead.

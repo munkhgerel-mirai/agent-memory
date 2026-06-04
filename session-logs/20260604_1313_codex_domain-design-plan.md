@@ -13,6 +13,9 @@
 - Noted existing unrelated worktree changes and avoided reverting them.
 - Created `docs/02-construction/02-design-plan/domain_design_plan.md`.
 - Updated `PROJECT_STATUS.md` to show Domain Design planning has started and is pending human approval.
+- Recorded user approval of the Domain Design plan.
+- Generated one technology-agnostic Domain Design artifact for each approved Unit.
+- Updated `PROJECT_STATUS.md` to show Domain Design artifacts are pending human review.
 
 ## Decisions Made
 
@@ -20,10 +23,11 @@
 - Did not create Unit Domain Design artifacts before human approval of the plan.
 - Preserved technology decisions for later gates: implementation language, iii-engine required-vs-optional status, storage profile, raw observation TTL, and embeddings.
 - Chose UNIT-01 first in the execution order because lifecycle memory categories and traceability edges define the shared domain language.
+- Kept Domain Design free of database, framework, cloud, schema, embedding provider, and implementation-code choices.
+- Left all generated Domain Design artifacts pending human review.
 
 ## Next Steps
 
-1. Human reviews and approves or requests changes to `docs/02-construction/02-design-plan/domain_design_plan.md`.
-2. After approval, execute the plan one checkbox at a time.
-3. Generate one technology-agnostic Domain Design artifact per approved Unit under `docs/02-construction/03-domain-design/`.
-4. Keep Logical Design, technology binding, code, and tests blocked until Domain Design artifacts are approved.
+1. Human reviews and approves or requests changes to the generated Domain Design artifacts.
+2. After Domain Design approval, begin Logical Design or a technology decision with a new approved plan.
+3. Keep Logical Design, technology binding, code, and tests blocked until Domain Design artifacts are approved.
