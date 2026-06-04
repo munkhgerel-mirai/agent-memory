@@ -18,7 +18,7 @@ Key Objectives:
 ## Current Status
 
 **Phase:** INCEPTION  
-**Status:** UNITS PLAN CREATED - PENDING HUMAN APPROVAL
+**Status:** UNITS AND BOLTS GENERATED - PENDING HUMAN REVIEW
 
 ---
 
@@ -35,15 +35,18 @@ Key Objectives:
 - Inception artifacts generated: intent clarification, user stories, NFRs, and risk register.
 - Inception artifacts reviewed and approved by the user on 2026-06-04.
 - Units and Bolts planning started with `docs/01-inception/99-plans/units_and_bolts_plan.md`.
+- Units and Bolts plan approved by the user on 2026-06-04.
+- Units composition generated in `docs/01-inception/05-units/units_composition.md`.
+- Bolts plan generated in `docs/01-inception/06-bolts/bolts_plan.md`.
 
 ---
 
 ## Next Steps
 
-1. Review and approve `docs/01-inception/99-plans/units_and_bolts_plan.md`.
-2. After approval, compose Units in `docs/01-inception/05-units/units_composition.md`.
-3. After approval, define Bolts in `docs/01-inception/06-bolts/bolts_plan.md`.
-4. Keep Domain Design, Logical Design, technology selection, code, and test generation blocked until Units/Bolts artifacts are approved.
+1. Review `docs/01-inception/05-units/units_composition.md`.
+2. Review `docs/01-inception/06-bolts/bolts_plan.md`.
+3. Approve or request changes before moving to Domain Design.
+4. Run a technology decision before binding implementation language, iii-engine status, storage profile, or embeddings.
 
 ---
 
@@ -52,5 +55,5 @@ Key Objectives:
 - `README.md` still presents the repository as the AI-DLC template and should be made project-specific before external use.
 - `src/placeholder_app.py` and `tests/test_placeholder.py` remain template skeletons by design.
 - Technology decisions require a recorded Human Selection Gate before ADR approval or downstream use.
-- Units/Bolts execution is blocked until the human approves `docs/01-inception/99-plans/units_and_bolts_plan.md`.
 - Domain Design, Logical Design, code, and test generation remain blocked until Units/Bolts artifacts are approved.
+- Implementation technology choices remain open: language/runtime surface, iii-engine required-vs-optional status, raw observation retention, and optional embeddings.

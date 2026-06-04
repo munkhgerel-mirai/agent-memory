@@ -3,7 +3,7 @@
 **Project:** Agent-memory
 **Date:** 2026-06-04
 **Skill:** ai-dlc-units
-**Approval Status:** Pending human approval
+**Approval Status:** Approved by user on 2026-06-04
 
 ---
 
@@ -48,21 +48,21 @@ Do not begin Domain Design, Logical Design, technology selection, implementation
 
 ## Execution Checklist
 
-- [ ] Record explicit approval to execute this Units and Bolts plan.
-- [ ] Confirm approved Inception artifacts exist and record their approval status.
-- [ ] Review unresolved Inception open questions and identify which block Unit decomposition versus later technology decision.
-- [ ] Map each user story to candidate capabilities before grouping.
-- [ ] Map each NFR and risk to candidate Unit impacts before grouping.
-- [ ] Compose cohesive, loosely coupled Units using business capability, independent-build, and lifecycle-traceability criteria.
-- [ ] Validate that no `Must` story is orphaned and no story is duplicated without explanation.
-- [ ] Document Unit dependencies, integration points, and dependency classifications.
-- [ ] Save Units to `docs/01-inception/05-units/units_composition.md`.
-- [ ] Define Bolts as small build-validation steps measured in hours or days.
-- [ ] Mark each Bolt as parallel-safe or sequential and document the reasoning.
-- [ ] Save Bolts to `docs/01-inception/06-bolts/bolts_plan.md`.
-- [ ] Update `PROJECT_STATUS.md` with Units workflow progress and remaining blockers.
-- [ ] Write a session log under `session-logs/` with skills used, decisions, completed artifacts, and next steps.
-- [ ] Review generated Units/Bolts artifacts and verification evidence before requesting approval to move to Domain Design.
+- [x] Record explicit approval to execute this Units and Bolts plan.
+- [x] Confirm approved Inception artifacts exist and record their approval status.
+- [x] Review unresolved Inception open questions and identify which block Unit decomposition versus later technology decision.
+- [x] Map each user story to candidate capabilities before grouping.
+- [x] Map each NFR and risk to candidate Unit impacts before grouping.
+- [x] Compose cohesive, loosely coupled Units using business capability, independent-build, and lifecycle-traceability criteria.
+- [x] Validate that no `Must` story is orphaned and no story is duplicated without explanation.
+- [x] Document Unit dependencies, integration points, and dependency classifications.
+- [x] Save Units to `docs/01-inception/05-units/units_composition.md`.
+- [x] Define Bolts as small build-validation steps measured in hours or days.
+- [x] Mark each Bolt as parallel-safe or sequential and document the reasoning.
+- [x] Save Bolts to `docs/01-inception/06-bolts/bolts_plan.md`.
+- [x] Update `PROJECT_STATUS.md` with Units workflow progress and remaining blockers.
+- [x] Write a session log under `session-logs/` with skills used, decisions, completed artifacts, and next steps.
+- [x] Review generated Units/Bolts artifacts and verification evidence before requesting approval to move to Domain Design.
 
 ---
 
@@ -106,3 +106,13 @@ These are not final Unit boundaries. They are starting hypotheses for the approv
 - Bolts are small enough for hours/days execution.
 - Parallel/sequential assumptions are documented.
 - Human approval is recorded before moving to Domain Design.
+
+---
+
+## Execution Notes
+
+- 2026-06-04: User approved the Units and Bolts plan in chat.
+- 2026-06-04: Generated `docs/01-inception/05-units/units_composition.md`.
+- 2026-06-04: Generated `docs/01-inception/06-bolts/bolts_plan.md`.
+- 2026-06-04: All `Must` stories were assigned exactly once.
+- 2026-06-04: Units/Bolts artifacts are pending human review before Domain Design.
