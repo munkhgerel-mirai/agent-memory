@@ -17,6 +17,8 @@
 - Recorded user approval of the Units and Bolts plan.
 - Generated `docs/01-inception/05-units/units_composition.md`.
 - Generated `docs/01-inception/06-bolts/bolts_plan.md`.
+- Recorded repository content boundary for product/runtime documentation assets.
+- Created `src/docs/README.md`.
 
 ## Decisions Made
 
@@ -26,6 +28,8 @@
 - Composed five Units: lifecycle memory core, local storage/retrieval, framework-agnostic integration/runtime adapter, privacy/governance/operations, and optional semantic retrieval.
 - Planned seven Bolts with explicit sequential/parallel assumptions.
 - Confirmed all `Must` stories are assigned exactly once.
+- Root `docs/` is reserved for Agent-memory development AI-DLC artifacts.
+- Agent-memory product templates, classified Markdown examples, and fixtures belong under `src/docs/`.
 
 ## Next Steps
 

@@ -38,6 +38,7 @@ Key Objectives:
 - Units and Bolts plan approved by the user on 2026-06-04.
 - Units composition generated in `docs/01-inception/05-units/units_composition.md`.
 - Bolts plan generated in `docs/01-inception/06-bolts/bolts_plan.md`.
+- Repository content boundary clarified: root `docs/` is reserved for Agent-memory development AI-DLC artifacts; Agent-memory product templates, classified Markdown examples, and fixtures belong under `src/docs/`.
 
 ---
 
@@ -57,3 +58,4 @@ Key Objectives:
 - Technology decisions require a recorded Human Selection Gate before ADR approval or downstream use.
 - Domain Design, Logical Design, code, and test generation remain blocked until Units/Bolts artifacts are approved.
 - Implementation technology choices remain open: language/runtime surface, iii-engine required-vs-optional status, raw observation retention, and optional embeddings.
+- Product/runtime documentation assets must not be added to root `docs/`; use `src/docs/` instead.

@@ -21,6 +21,7 @@ Pending human review. Generated from the approved Units and Bolts plan.
 - Classify Markdown AI-DLC artifacts into lifecycle-aware memory records.
 - Define typed lifecycle edges for traceability between artifacts, decisions, risks, and downstream work.
 - Preserve historical approved plans as records instead of mutating them to match current state.
+- Define the repository content boundary: root `docs/` contains only AI-DLC artifacts for developing Agent-memory; bundled runtime templates, classified Markdown examples, and fixtures live under `src/docs/`.
 
 ### Out Of Scope
 
@@ -33,7 +34,8 @@ Pending human review. Generated from the approved Units and Bolts plan.
 | Dependency | Classification | Direction | Notes |
 |------------|----------------|-----------|-------|
 | Approved Inception artifacts | Sequential | Inbound | Unit boundaries depend on approved stories, NFRs, and risks. |
-| Markdown AI-DLC artifact layout | Data | Inbound | Classifier consumes existing `docs/` phase structure. |
+| Markdown AI-DLC artifact layout | Data | Inbound | Classifier consumes a target workspace's AI-DLC `docs/` phase structure, while this repository's root `docs/` remains development-only. |
+| Runtime documentation assets | Data | Outbound | Product templates, classified Markdown examples, and fixtures are stored under `src/docs/`. |
 | Storage/index Unit | Integration | Outbound | UNIT-02 persists metadata, search index, and lifecycle edges. |
 | Privacy/Governance Unit | Integration | Both | Memory category and provenance metadata must include visibility and approval fields. |
 
@@ -68,6 +70,7 @@ Pending human review. Generated from the approved Units and Bolts plan.
 - Rebuild SQLite index deterministically from Markdown artifacts and JSONL events.
 - Produce a default startup context pack at or below 2000 tokens.
 - Support local/offline search for solo and workspace users.
+- Use `src/docs/` for bundled sample Markdown inputs, classified fixtures, and template assets used by implementation or tests.
 
 ### Out Of Scope
 
@@ -80,6 +83,7 @@ Pending human review. Generated from the approved Units and Bolts plan.
 | Dependency | Classification | Direction | Notes |
 |------------|----------------|-----------|-------|
 | UNIT-01 lifecycle categories and edges | Sequential | Inbound | Storage schema and retrieval ranking need memory categories and edge semantics. |
+| `src/docs/` runtime assets | Data | Inbound | Sample classified Markdown and template fixtures can seed tests and examples without polluting root AI-DLC artifacts. |
 | Privacy/Governance policies | Integration | Inbound | Retrieval filters must respect visibility, redaction, retention, and deletion. |
 | Integration surfaces | Integration | Outbound | UNIT-03 exposes query/rebuild/context operations through MCP, CLI, and local API. |
 | Future Postgres profile | External-system | Outbound | Interfaces should avoid SQLite lock-in. |

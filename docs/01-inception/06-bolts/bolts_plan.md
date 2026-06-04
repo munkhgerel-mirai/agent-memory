@@ -12,7 +12,7 @@ Pending human review. Generated from the approved Units and Bolts plan.
 - **Goal:** Define the AI-DLC lifecycle memory categories, artifact classifier rules, and typed traceability edges.
 - **Duration:** 1-2 days
 - **Included Stories:** US-002, US-003
-- **Expected Artifact / Output:** Domain memory model draft, classifier specification, lifecycle edge catalog, traceability examples.
+- **Expected Artifact / Output:** Domain memory model draft, classifier specification, lifecycle edge catalog, traceability examples, and `src/docs/` runtime-asset boundary.
 - **Parallel / Sequential Status:** Sequential
 - **Reasoning:** Storage, retrieval, governance, and interfaces depend on the lifecycle memory vocabulary.
 - **Status:** Planned
@@ -28,6 +28,7 @@ Pending human review. Generated from the approved Units and Bolts plan.
 
 - Review that each lifecycle category maps to at least one approved artifact type or planned downstream artifact.
 - Verify US-002 and US-003 acceptance criteria are represented in the model.
+- Verify product templates and classified Markdown examples are placed under `src/docs/`, not repository root `docs/`.
 
 ### Exit Criteria
 
@@ -42,7 +43,7 @@ Pending human review. Generated from the approved Units and Bolts plan.
 - **Goal:** Establish Markdown/JSONL/SQLite storage responsibilities and deterministic rebuild behavior.
 - **Duration:** 1-3 days
 - **Included Stories:** US-004
-- **Expected Artifact / Output:** Storage design, JSONL event schema, SQLite metadata/FTS/lifecycle-edge schema, rebuild workflow.
+- **Expected Artifact / Output:** Storage design, JSONL event schema, SQLite metadata/FTS/lifecycle-edge schema, rebuild workflow, and fixture loading convention for `src/docs/`.
 - **Parallel / Sequential Status:** Sequential after BOLT-01
 - **Reasoning:** Storage schema depends on lifecycle memory categories and traceability edges.
 - **Status:** Planned
@@ -58,6 +59,7 @@ Pending human review. Generated from the approved Units and Bolts plan.
 
 - Verify rebuild can be specified from Markdown artifacts and JSONL events without relying on SQLite as sole source of truth.
 - Verify US-004 and NFR-003/NFR-009 are covered.
+- Verify implementation/test fixtures can use `src/docs/` without mixing product examples into AI-DLC lifecycle artifacts.
 
 ### Exit Criteria
 
