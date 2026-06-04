@@ -116,3 +116,4 @@ These are not final Unit boundaries. They are starting hypotheses for the approv
 - 2026-06-04: Generated `docs/01-inception/06-bolts/bolts_plan.md`.
 - 2026-06-04: All `Must` stories were assigned exactly once.
 - 2026-06-04: Units/Bolts artifacts are pending human review before Domain Design.
+- 2026-06-04: User approved `docs/01-inception/05-units/units_composition.md` and `docs/01-inception/06-bolts/bolts_plan.md` in chat.
