@@ -47,24 +47,24 @@ This plan is an approval gate. Do not create Logical Design artifacts, system ar
 
 ## Execution Checklist
 
-- [ ] Record explicit human approval of this Logical Design plan.
-- [ ] Reconfirm all approved inputs are present before execution.
-- [ ] Review `ai-dlc-logical-design` skill instructions and Logical Design template.
-- [ ] Create UNIT-01 Logical Design for Lifecycle Memory Core.
-- [ ] Create UNIT-04 Logical Design for Privacy, Governance, and Memory Operations.
-- [ ] Create UNIT-02 Logical Design for Local Workspace Storage and Retrieval.
-- [ ] Create UNIT-03 Logical Design for Framework-Agnostic Integration and Runtime Adapter.
-- [ ] Create UNIT-05 Logical Design for Optional Semantic Retrieval Extension.
-- [ ] Add an NFR traceability matrix in each Logical Design artifact.
-- [ ] Define architecture patterns, component boundaries, dependency direction, and interfaces for each Unit.
-- [ ] Define integration contracts between Units and external/runtime surfaces.
-- [ ] Add high-level, non-binding technology mapping consistent with approved Technology Decisions.
-- [ ] Describe data flows, failure modes, error handling, and security/privacy behavior.
-- [ ] Record ADR-lite logical design decisions, open questions, and trade-offs.
-- [ ] Create or update `docs/02-construction/01-architecture/system_architecture.md` if cross-Unit architecture synthesis is needed.
-- [ ] Verify every Logical Design artifact traces back to approved Units, NFRs, risks, and Technology Decisions.
-- [ ] Update `PROJECT_STATUS.md`.
-- [ ] Write a session log in `session-logs/`.
+- [x] Record explicit human approval of this Logical Design plan.
+- [x] Reconfirm all approved inputs are present before execution.
+- [x] Review `ai-dlc-logical-design` skill instructions and Logical Design template.
+- [x] Create UNIT-01 Logical Design for Lifecycle Memory Core.
+- [x] Create UNIT-04 Logical Design for Privacy, Governance, and Memory Operations.
+- [x] Create UNIT-02 Logical Design for Local Workspace Storage and Retrieval.
+- [x] Create UNIT-03 Logical Design for Framework-Agnostic Integration and Runtime Adapter.
+- [x] Create UNIT-05 Logical Design for Optional Semantic Retrieval Extension.
+- [x] Add an NFR traceability matrix in each Logical Design artifact.
+- [x] Define architecture patterns, component boundaries, dependency direction, and interfaces for each Unit.
+- [x] Define integration contracts between Units and external/runtime surfaces.
+- [x] Add high-level, non-binding technology mapping consistent with approved Technology Decisions.
+- [x] Describe data flows, failure modes, error handling, and security/privacy behavior.
+- [x] Record ADR-lite logical design decisions, open questions, and trade-offs.
+- [x] Create or update `docs/02-construction/01-architecture/system_architecture.md` if cross-Unit architecture synthesis is needed.
+- [x] Verify every Logical Design artifact traces back to approved Units, NFRs, risks, and Technology Decisions.
+- [x] Update `PROJECT_STATUS.md`.
+- [x] Write a session log in `session-logs/`.
 
 ## Proposed Modeling Order
 
@@ -85,3 +85,15 @@ This plan is an approval gate. Do not create Logical Design artifacts, system ar
 ## Execution Notes
 
 - 2026-06-04: Plan created by Codex for human review. Execution is blocked until explicit approval.
+- 2026-06-04: User approved `docs/02-construction/02-design-plan/logical_design_plan.md`; execution started.
+- 2026-06-04: Confirmed approved Units/Bolts, Domain Design artifacts, NFRs, risks, and Technology Decisions are present.
+- 2026-06-04: Re-read `ai-dlc-logical-design` skill instructions and `logical_design_TEMPLATE.md` before artifact creation.
+- 2026-06-04: Created `docs/02-construction/03-domain-design/unit_01_lifecycle_memory_core_logical_design.md`.
+- 2026-06-04: Created `docs/02-construction/03-domain-design/unit_04_privacy_governance_and_memory_operations_logical_design.md`.
+- 2026-06-04: Created `docs/02-construction/03-domain-design/unit_02_local_workspace_storage_and_retrieval_logical_design.md`.
+- 2026-06-04: Created `docs/02-construction/03-domain-design/unit_03_framework_agnostic_integration_and_runtime_adapter_logical_design.md`.
+- 2026-06-04: Created `docs/02-construction/03-domain-design/unit_05_optional_semantic_retrieval_extension_logical_design.md`.
+- 2026-06-04: Added NFR traceability, architecture patterns, component boundaries, integration contracts, non-binding technology mapping, data flow, failure modes, security/privacy, ADR-lite decisions, and open questions to each Unit Logical Design artifact.
+- 2026-06-04: Created `docs/02-construction/01-architecture/system_architecture.md` for cross-Unit component context, dependency direction, data flow, decisions, and NFR/risk coverage.
+- 2026-06-04: Verified each Unit Logical Design artifact includes required sections, approved Domain Design trace, NFR/risk references, and approved Technology Decision trace.
+- 2026-06-04: Updated `PROJECT_STATUS.md` and wrote `session-logs/20260604_1523_codex_logical-design-artifacts.md`.
