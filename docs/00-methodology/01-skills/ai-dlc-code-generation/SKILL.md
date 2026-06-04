@@ -11,7 +11,7 @@ Use this skill to implement code and tests from approved AI-DLC designs with tra
 
 1. Confirm approved inputs exist: Units, user stories, domain designs, logical designs, NFRs, and risk register.
 2. Inspect existing repo structure, runtime, dependency manager, source folders, test folders, and existing implementation patterns.
-3. Treat placeholder code in `src/` and `tests/` as non-production unless the human says otherwise.
+3. Treat placeholder code in `src/` and `src/tests/` as non-production unless the human says otherwise.
 4. Create a checkbox plan in `docs/02-construction/02-design-plan/code_generation_plan.md`.
 5. Request explicit human approval before execution.
 6. Map each planned implementation task to the relevant Unit, user story, acceptance criteria, domain model element, logical design decision, NFR, or risk.

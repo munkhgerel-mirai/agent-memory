@@ -24,7 +24,7 @@ Project identity metadata is present in `.ai-dlc-template.yml` and `.copier-answ
 
 ## Pre-Approval Findings
 
-- Required root artifacts appear present: `AGENTS.md`, `PROJECT_STATUS.md`, `README.md`, `ai-dlc-paper.md`, `session-logs/`, `src/`, and `tests/`.
+- Required root artifacts appear present: `AGENTS.md`, `PROJECT_STATUS.md`, `README.md`, `ai-dlc-paper.md`, `session-logs/`, `src/`, and `src/tests/`.
 - Required AI-DLC phase folders appear present under `docs/00-methodology/`, `docs/01-inception/`, `docs/02-construction/`, and `docs/03-operations/`.
 - The expected AI-DLC skill pack folders and `SKILL.md` files appear present.
 - Active `_TEMPLATE.md` files appear present across methodology, inception, construction, and operations folders.

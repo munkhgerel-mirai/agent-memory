@@ -32,7 +32,7 @@ Project-owned files are specific to a downstream project. Template upgrades and 
 - Session log entries under `session-logs/**`, except `session-logs/README.md`
 - Approved plans and generated lifecycle artifacts that do not end in `_TEMPLATE.md`
 - Real implementation code under `src/**`
-- Real test code under `tests/**`
+- Real test code under `src/tests/**`
 
 ### Manual-Merge
 

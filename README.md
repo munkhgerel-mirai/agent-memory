@@ -91,7 +91,7 @@ Use the project-specific answers when Copier prompts for project name, project i
 
 4. Preserve existing project identity, source code, tests, root `README.md`, and root `.gitignore`.
 
-Copier is configured with `skip_if_exists` for the highest-risk project-owned paths, but the adoption branch must still be reviewed before commit. Do not accept accidental changes to root `README.md`, `.gitignore`, `PROJECT_STATUS.md`, `src/**`, or `tests/**` unless a human explicitly approved those project-owned edits.
+Copier is configured with `skip_if_exists` for the highest-risk project-owned paths, but the adoption branch must still be reviewed before commit. Do not accept accidental changes to root `README.md`, `.gitignore`, `PROJECT_STATUS.md`, `src/**`, or `src/tests/**` unless a human explicitly approved those project-owned edits.
 
 5. Add the AI-DLC governance layer:
    - `AGENTS.md` through manual merge

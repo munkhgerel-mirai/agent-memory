@@ -8,7 +8,7 @@ Use this reference to choose the right skill and understand which artifacts it s
 - Get human approval before execution.
 - Execute one checkbox at a time.
 - Store documentation and lifecycle artifacts under `docs/`.
-- Store implementation code and tests in approved runtime folders such as `src/` and `tests/`.
+- Store implementation code and tests in approved runtime folders such as `src/` and `src/tests/`.
 - Treat an upstream artifact as approved only when its `Approval Status` is `Approved`, or when the governing approved plan explicitly names that output path as approved.
 - Treat approved plans as historical decision records after execution starts.
 - Do not semantically rewrite prior approved plans to match current state; use current plans, status files, setup validation, session logs, addenda, or follow-up plans instead.

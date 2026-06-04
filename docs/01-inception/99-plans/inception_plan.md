@@ -127,7 +127,7 @@ These questions will be asked after plan approval and answered before generating
 ## Known Constraints And Risks Before Execution
 
 - `README.md` remains template-oriented and should be made project-specific before external use.
-- `src/placeholder_app.py` and `tests/test_placeholder.py` remain template skeletons until an approved construction/code-generation plan replaces them.
+- `src/placeholder_app.py` and `src/tests/test_placeholder.py` remain template skeletons until an approved construction/code-generation plan replaces them.
 - Technology choices are not yet approved; binding runtime, storage, embedding, or cloud decisions must go through the Human Selection Gate before downstream use.
 
 ---

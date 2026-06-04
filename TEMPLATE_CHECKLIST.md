@@ -29,4 +29,4 @@ Use this checklist immediately after cloning the template.
 ## Code Skeleton
 
 - [ ] Replace `src/placeholder_app.py` with real entry point
-- [ ] Replace `tests/test_placeholder.py` with real tests
+- [ ] Replace `src/tests/test_placeholder.py` with real tests

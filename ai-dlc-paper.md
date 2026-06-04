@@ -203,5 +203,5 @@ Use the current AI-DLC skills in `docs/00-methodology/01-skills/`:
 1. Run `ai-dlc-setup` after cloning this template for a real project.
 2. Use `docs/00-methodology/skill_to_artifact_map.md` to choose the next skill.
 3. Store lifecycle documentation and AI-DLC artifacts under `docs/`.
-4. Store implementation code and tests in approved runtime and test folders such as `src/` and `tests/`.
+4. Store implementation code and tests in approved runtime and test folders such as `src/` and `src/tests/`.
 5. Always create a checkbox plan, request human approval, execute one checkbox at a time, and record the session log.

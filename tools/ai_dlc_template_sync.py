@@ -32,7 +32,7 @@ PROJECT_OWNED_EXACT = {
 PROJECT_OWNED_PREFIXES = (
     "session-logs/",
     "src/",
-    "tests/",
+    "src/tests/",
 )
 
 TEMPLATE_OWNED_EXACT = {

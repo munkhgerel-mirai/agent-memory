@@ -22,7 +22,7 @@ This file defines how AI agents and humans collaborate on this project using the
 
 4. **Artifact Discipline**
    - All documentation and lifecycle artifacts must be stored under `docs/` in the correct phase folder.
-   - Implementation code and tests must be stored in the approved source and test folders, such as `src/` and `tests/`, or another human-approved runtime structure.
+   - Implementation code and tests must be stored in the approved source and test folders, such as `src/` and `src/tests/`, or another human-approved runtime structure.
    - Do not move or rename existing documentation, code, test, or lifecycle artifacts without explicit approval.
 
 5. **No Silent Decisions**

@@ -146,7 +146,7 @@ Every artifact should satisfy these gates:
 
 - [ ] Implementation tasks map to Units, stories, acceptance criteria, domain elements, logical decisions, NFRs, or risks.
 - [ ] Code is placed in `src/` or an approved runtime folder.
-- [ ] Tests are placed in `tests/` or an approved test folder.
+- [ ] Tests are placed in `src/tests/` or an approved test folder.
 - [ ] New dependencies, frameworks, database choices, cloud SDKs, infrastructure tools, runtime platforms, or runtime structure changes have an `Approved` ADR with a recorded Human Selection Gate in `technology_decisions.md`, or the code-generation plan records the same human selection fields and explicit approval.
 - [ ] Non-binding Logical Design technology mapping is not treated as implementation approval.
 - [ ] Deviations from approved design are documented.

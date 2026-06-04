@@ -25,7 +25,7 @@ Setup plan approved by user on 2026-06-03. Validation and targeted active placeh
 | `ai-dlc-paper.md` | Present | Method reference available. |
 | `session-logs/` | Present | Contains README and setup session log. |
 | `src/` | Present | Contains template placeholder skeleton. |
-| `tests/` | Present | Contains template placeholder test skeleton. |
+| `src/tests/` | Present | Contains template placeholder test skeleton. |
 
 ## Managed Template Metadata
 
