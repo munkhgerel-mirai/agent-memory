@@ -18,7 +18,7 @@ Key Objectives:
 ## Current Status
 
 **Phase:** CONSTRUCTION - DOMAIN DESIGN  
-**Status:** DOMAIN DESIGN ARTIFACTS GENERATED - PENDING HUMAN REVIEW
+**Status:** DOMAIN DESIGN ARTIFACTS APPROVED - READY FOR LOGICAL DESIGN OR TECHNOLOGY DECISION PLANNING
 
 ---
 
@@ -43,17 +43,16 @@ Key Objectives:
 - Domain Design planning started with `docs/02-construction/02-design-plan/domain_design_plan.md`.
 - Domain Design plan approved by the user on 2026-06-04.
 - Technology-agnostic Domain Design artifacts generated for UNIT-01 through UNIT-05.
+- Domain Design artifacts reviewed and approved by the user on 2026-06-04.
 
 ---
 
 ## Next Steps
 
-1. Review `docs/02-construction/03-domain-design/unit_01_lifecycle_memory_core.md`.
-2. Review `docs/02-construction/03-domain-design/unit_02_local_workspace_storage_and_retrieval.md`.
-3. Review `docs/02-construction/03-domain-design/unit_03_framework_agnostic_integration_and_runtime_adapter.md`.
-4. Review `docs/02-construction/03-domain-design/unit_04_privacy_governance_and_memory_operations.md`.
-5. Review `docs/02-construction/03-domain-design/unit_05_optional_semantic_retrieval_extension.md`.
-6. Approve or request changes before moving to Logical Design or technology decision.
+1. Begin `ai-dlc-technology-decision` with a plan in `docs/02-construction/02-design-plan/` for implementation language, iii-engine status, storage profile, raw observation retention, and embeddings.
+2. Begin `ai-dlc-logical-design` with a plan in `docs/02-construction/02-design-plan/` after required technology/policy decisions are recorded.
+3. Use approved Domain Design artifacts as Logical Design inputs.
+4. Keep code and tests blocked until Logical Design artifacts and implementation plans are approved.
 
 ---
 
@@ -62,6 +61,7 @@ Key Objectives:
 - `README.md` still presents the repository as the AI-DLC template and should be made project-specific before external use.
 - `src/placeholder_app.py` and `src/tests/test_placeholder.py` remain template skeletons by design.
 - Technology decisions require a recorded Human Selection Gate before ADR approval or downstream use.
-- Logical Design, code, and test generation remain blocked until Domain Design artifacts are approved.
+- Logical Design execution is blocked until a Logical Design plan is created and approved.
+- Code and test generation remain blocked until Logical Design artifacts are approved.
 - Implementation technology choices remain open: language/runtime surface, iii-engine required-vs-optional status, raw observation retention, and optional embeddings.
 - Product/runtime documentation assets must not be added to root `docs/`; use `src/docs/` instead.

@@ -6,7 +6,7 @@
 
 ## Approval Status
 
-Pending human review. Generated from approved `docs/02-construction/02-design-plan/domain_design_plan.md`.
+Approved by user on 2026-06-04. Generated from approved `docs/02-construction/02-design-plan/domain_design_plan.md`.
 
 ## Unit Summary
 

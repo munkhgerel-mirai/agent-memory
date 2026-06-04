@@ -16,6 +16,7 @@
 - Recorded user approval of the Domain Design plan.
 - Generated one technology-agnostic Domain Design artifact for each approved Unit.
 - Updated `PROJECT_STATUS.md` to show Domain Design artifacts are pending human review.
+- Recorded user approval of the generated Domain Design artifacts.
 
 ## Decisions Made
 
@@ -24,10 +25,11 @@
 - Preserved technology decisions for later gates: implementation language, iii-engine required-vs-optional status, storage profile, raw observation TTL, and embeddings.
 - Chose UNIT-01 first in the execution order because lifecycle memory categories and traceability edges define the shared domain language.
 - Kept Domain Design free of database, framework, cloud, schema, embedding provider, and implementation-code choices.
-- Left all generated Domain Design artifacts pending human review.
+- Initially left all generated Domain Design artifacts pending human review.
+- Domain Design artifacts are approved and may be used as inputs to Logical Design or technology decision planning.
 
 ## Next Steps
 
-1. Human reviews and approves or requests changes to the generated Domain Design artifacts.
-2. After Domain Design approval, begin Logical Design or a technology decision with a new approved plan.
-3. Keep Logical Design, technology binding, code, and tests blocked until Domain Design artifacts are approved.
+1. Begin technology decision with a plan in `docs/02-construction/02-design-plan/`.
+2. Begin Logical Design with a plan in `docs/02-construction/02-design-plan/` after required technology/policy decisions are recorded.
+3. Keep code and tests blocked until Logical Design artifacts and implementation plans are approved.
