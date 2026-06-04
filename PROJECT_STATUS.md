@@ -18,7 +18,7 @@ Key Objectives:
 ## Current Status
 
 **Phase:** INCEPTION  
-**Status:** ARTIFACTS GENERATED - PENDING HUMAN REVIEW
+**Status:** UNITS PLAN CREATED - PENDING HUMAN APPROVAL
 
 ---
 
@@ -33,15 +33,17 @@ Key Objectives:
 - Inception plan approved by the user on 2026-06-04.
 - Mob Elaboration open-question answers approved by the user on 2026-06-04.
 - Inception artifacts generated: intent clarification, user stories, NFRs, and risk register.
+- Inception artifacts reviewed and approved by the user on 2026-06-04.
+- Units and Bolts planning started with `docs/01-inception/99-plans/units_and_bolts_plan.md`.
 
 ---
 
 ## Next Steps
 
-1. Review `docs/01-inception/01-intent-clarification/intent_clarification.md`.
-2. Review `docs/01-inception/02-user-stories/all_user_stories.md`.
-3. Review `docs/01-inception/03-nfrs/nfrs.md` and `docs/01-inception/04-risks/risk_register.md`.
-4. Approve or request changes before moving to `ai-dlc-units`.
+1. Review and approve `docs/01-inception/99-plans/units_and_bolts_plan.md`.
+2. After approval, compose Units in `docs/01-inception/05-units/units_composition.md`.
+3. After approval, define Bolts in `docs/01-inception/06-bolts/bolts_plan.md`.
+4. Keep Domain Design, Logical Design, technology selection, code, and test generation blocked until Units/Bolts artifacts are approved.
 
 ---
 
@@ -50,4 +52,5 @@ Key Objectives:
 - `README.md` still presents the repository as the AI-DLC template and should be made project-specific before external use.
 - `src/placeholder_app.py` and `tests/test_placeholder.py` remain template skeletons by design.
 - Technology decisions require a recorded Human Selection Gate before ADR approval or downstream use.
-- Units, design, code, and test generation remain blocked until Inception artifacts are approved.
+- Units/Bolts execution is blocked until the human approves `docs/01-inception/99-plans/units_and_bolts_plan.md`.
+- Domain Design, Logical Design, code, and test generation remain blocked until Units/Bolts artifacts are approved.

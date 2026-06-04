@@ -4,7 +4,7 @@
 
 ## Approval Status
 
-Pending human review. Generated from the approved Inception plan and approved Mob Elaboration answers.
+Approved by user on 2026-06-04. Generated from the approved Inception plan and approved Mob Elaboration answers.
 
 ## Story US-001 - Restore AI-DLC Startup Context
 
@@ -80,7 +80,7 @@ As an AI-DLC project owner, I want lifecycle relationships between artifacts, so
 ## Story US-004 - Search Workspace Memory Locally
 
 - **Priority:** Must
-- **User Role:** Solo developer using Codex
+- **User Role:** Solo developer using random LLM
 - **Goal:** Search relevant workspace memory without hosted infrastructure.
 - **Business Value:** A solo developer can use Agent-memory immediately in local workflows.
 - **Linked Intent / Outcome:** Local-first adoption
@@ -88,7 +88,7 @@ As an AI-DLC project owner, I want lifecycle relationships between artifacts, so
 
 ### Story
 
-As a solo developer using Codex, I want local memory search, so that I can retrieve project context without a server dependency.
+As a solo developer random LLM, I want local memory search, so that I can retrieve project context without a server dependency.
 
 ### Acceptance Criteria
 

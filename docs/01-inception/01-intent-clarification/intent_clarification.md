@@ -5,7 +5,7 @@
 
 ## Approval Status
 
-Pending human review. Generated from the approved Inception plan and approved Mob Elaboration answers.
+Approved by user on 2026-06-04. Generated from the approved Inception plan and approved Mob Elaboration answers.
 
 ## Working Intent
 
@@ -22,7 +22,7 @@ To build an agentic memory system that provides persistent, framework-agnostic c
 | Role / Group | Need | Notes |
 |--------------|------|-------|
 | Team and workspace users | Shared lifecycle memory across project sessions, agents, and contributors. | Primary user group for product direction. |
-| Solo developer using Codex | Local/single-user memory for project continuity across fresh sessions. | First-person local mode should remain lightweight. |
+| Solo developer using random LLM | Local/single-user memory for project continuity across fresh sessions. | First-person local mode should remain lightweight. |
 | Autonomous coding agents | Reliable context packs, decisions, active plans, blockers, and next steps. | Agents consume memory through MCP, CLI, or API surfaces. |
 | AI-DLC project owner / approver | Traceable approval gates, decision rationale, and artifact history. | Human approval remains authoritative for lifecycle transitions. |
 | Workspace operator | Inspectable storage, deletion/export, retention, and privacy controls. | Operational needs should stay simple in v1. |
