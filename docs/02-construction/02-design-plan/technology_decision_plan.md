@@ -98,7 +98,7 @@ External references already mentioned by the user, such as `iii-hq/iii` and `roh
 - [x] Compare TD-005 candidates across lifecycle-authoritative ranking, retrieval quality, privacy, token cost, lock-in, and v1 delivery risk.
 - [x] Draft recommendations for each decision area with status `Proposed` or `Deferred`.
 - [x] Present the Human Selection Gate with candidate comparison, recommendation, and downstream authorization boundaries.
-- [ ] Record the human outcome for each decision area: Selected, Deferred, Rejected, or More Analysis Needed.
+- [x] Record the human outcome for each decision area: Selected, Deferred, Rejected, or More Analysis Needed.
 - [x] Create `docs/02-construction/01-architecture/technology_decisions.md` from the approved template.
 - [x] Record ADR entries for each decision area, including alternatives, consequences, risks, reversibility, confidence, related Units/NFRs/risks/design artifacts, follow-ups, and approval status.
 - [x] Keep ADR entries non-binding unless human selection and approval are both recorded.
@@ -157,5 +157,7 @@ AI may recommend, but must not select on the human's behalf.
 - 2026-06-04: Technology Decision plan created and left pending human review.
 - 2026-06-04: User approved the Technology Decision plan in chat.
 - 2026-06-04: Reviewed primary sources for `iii-hq/iii` and `rohitg00/agentmemory`.
-- 2026-06-04: Created `docs/02-construction/01-architecture/technology_decisions.md` with Proposed ADR entries and Pending Selection gates.
-- 2026-06-04: Human Selection Gate is pending; no decision is binding yet.
+- 2026-06-04: Created `docs/02-construction/01-architecture/technology_decisions.md` with Proposed ADR entries before user selection.
+- 2026-06-04: At creation time, no decision was binding yet.
+- 2026-06-04: User approved all AI-recommended selections.
+- 2026-06-04: Updated `docs/02-construction/01-architecture/technology_decisions.md` with Selected/Approved ADR entries for TD-001 through TD-005.

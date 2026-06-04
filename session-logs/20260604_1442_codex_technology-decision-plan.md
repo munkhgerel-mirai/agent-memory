@@ -17,6 +17,9 @@
 - Reviewed primary sources for `iii-hq/iii` and `rohitg00/agentmemory`.
 - Created `docs/02-construction/01-architecture/technology_decisions.md` with Proposed ADR entries for TD-001 through TD-005.
 - Updated `PROJECT_STATUS.md` to show the Human Selection Gate is pending.
+- Recorded user approval of all AI-recommended selections.
+- Updated `docs/02-construction/01-architecture/technology_decisions.md` so ADR-001 through ADR-005 are Selected and Approved.
+- Updated `PROJECT_STATUS.md` to show Technology Decisions are approved and ready for Logical Design planning.
 
 ## Decisions Made
 
@@ -26,11 +29,15 @@
 - Treated candidate options as starting hypotheses, not binding decisions.
 - Preserved Logical Design, code, tests, dependency changes, and runtime changes as blocked until the appropriate approval gates complete.
 - Recommended TypeScript/Node, optional iii adapter, local-first rebuildable storage, no automatic raw observation retention by default, and deferred embeddings as non-binding proposals.
-- Kept all ADR entries pending human selection and approval.
+- Initially left all ADR entries awaiting human selection and approval.
+- Selected TypeScript/Node as the primary v1 runtime/package surface.
+- Selected iii-engine as an optional first-class adapter with independent core local mode.
+- Selected local-first durable docs/events plus rebuildable local index behind pluggable repository interfaces.
+- Selected no automatic raw observation retention by default; configurable TTL when enabled.
+- Selected deferring embeddings/provider choice from v1 while preserving a v1.1 semantic retrieval extension boundary.
 
 ## Next Steps
 
-1. Human reviews `docs/02-construction/01-architecture/technology_decisions.md`.
-2. Human records selected, deferred, rejected, or more-analysis outcomes for TD-001 through TD-005.
-3. After human selection and approval, update ADR approval records and downstream authorization boundaries.
-4. Keep Logical Design, code, tests, dependencies, and runtime changes blocked until decisions are approved or explicitly deferred with boundaries.
+1. Begin Logical Design with a plan in `docs/02-construction/02-design-plan/`.
+2. Use approved Domain Design artifacts and approved Technology Decisions as Logical Design inputs.
+3. Keep code, tests, dependencies, runtime changes, and deployment work blocked until downstream plans are approved.

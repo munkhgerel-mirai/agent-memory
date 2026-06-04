@@ -18,7 +18,7 @@ Key Objectives:
 ## Current Status
 
 **Phase:** CONSTRUCTION - TECHNOLOGY DECISION  
-**Status:** HUMAN SELECTION GATE PRESENTED - PENDING HUMAN SELECTION
+**Status:** TECHNOLOGY DECISIONS APPROVED - READY FOR LOGICAL DESIGN PLANNING
 
 ---
 
@@ -47,16 +47,17 @@ Key Objectives:
 - Technology Decision planning started with `docs/02-construction/02-design-plan/technology_decision_plan.md`.
 - Technology Decision plan approved by the user on 2026-06-04.
 - Proposed technology ADRs created in `docs/02-construction/01-architecture/technology_decisions.md`; all remain pending human selection and approval.
+- Human Selection Gate completed on 2026-06-04; user approved all AI-recommended selections.
+- Approved technology decisions: TypeScript/Node primary runtime, iii-engine optional adapter, local-first rebuildable storage posture, no automatic raw observation retention by default with configurable TTL when enabled, and embeddings deferred from v1 with a v1.1 extension boundary.
 
 ---
 
 ## Next Steps
 
-1. Review `docs/02-construction/01-architecture/technology_decisions.md`.
-2. Record Human Selection Gate outcomes for TD-001 through TD-005: Selected, Deferred, Rejected, or More Analysis Needed.
-3. After human selection and approval, update ADR approval records and downstream authorization boundaries.
-4. Begin `ai-dlc-logical-design` only after required technology/policy decisions are approved or explicitly deferred.
-5. Keep code and tests blocked until Logical Design artifacts and implementation plans are approved.
+1. Begin `ai-dlc-logical-design` with a plan in `docs/02-construction/02-design-plan/`.
+2. Use approved Domain Design artifacts and approved Technology Decisions as Logical Design inputs.
+3. Preserve downstream authorization boundaries: Logical Design may use the decisions, but implementation still requires approved Logical Design and Code Generation plans.
+4. Keep code, tests, dependency installation, runtime-structure changes, and deployment work blocked until downstream plans are approved.
 
 ---
 
@@ -64,8 +65,7 @@ Key Objectives:
 
 - `README.md` still presents the repository as the AI-DLC template and should be made project-specific before external use.
 - `src/placeholder_app.py` and `src/tests/test_placeholder.py` remain template skeletons by design.
-- Technology decisions require recorded Human Selection Gate outcomes before ADR approval or downstream use.
+- Future technology changes require a recorded Human Selection Gate before ADR approval or downstream use.
 - Logical Design execution is blocked until a Logical Design plan is created and approved.
 - Code and test generation remain blocked until Logical Design artifacts are approved.
-- Implementation technology choices remain open: language/runtime surface, iii-engine required-vs-optional status, raw observation retention, and optional embeddings.
 - Product/runtime documentation assets must not be added to root `docs/`; use `src/docs/` instead.
