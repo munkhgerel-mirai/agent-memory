@@ -3,7 +3,7 @@
 **Project:** Agent-memory  
 **Date:** 2026-06-05  
 **Skill:** `ai-dlc-code-generation`  
-**Approval Status:** Pending human review
+**Approval Status:** Approved by user on 2026-06-05
 
 ## Purpose
 
@@ -103,24 +103,24 @@ If this plan is approved, the following implementation authorizations are includ
 
 ## Execution Checklist
 
-- [ ] Record explicit human approval of this Code Generation plan.
-- [ ] Reconfirm approved inputs and verify no upstream approval has changed.
-- [ ] Create TypeScript/Node package scaffold with approved minimal dev tooling.
-- [ ] Replace or remove non-production Python placeholder source/test files.
-- [ ] Create root `tests/` folder for TypeScript tests.
-- [ ] Implement UNIT-01 memory category catalog and category validation.
-- [ ] Implement UNIT-01 value objects and lifecycle memory record model.
-- [ ] Implement artifact source classification rules and template-vs-project boundary.
-- [ ] Implement lifecycle relationship catalog and edge validation.
-- [ ] Implement historical record policy.
-- [ ] Add tests for category coverage, memory invariants, template exclusion, relationship validation, and historical record behavior.
-- [ ] Add `src/docs/` classified examples or fixtures only if needed for tests.
-- [ ] Create `docs/02-construction/04-code-generation/code_generation_report.md`.
-- [ ] Run available verification checks: install/build/typecheck/tests using approved toolchain.
-- [ ] Create `docs/02-construction/04-code-generation/test_results.md`.
-- [ ] If tests/checks fail, document failures and request approval before applying non-trivial fixes.
-- [ ] Update `PROJECT_STATUS.md`.
-- [ ] Write a session log in `session-logs/`.
+- [x] Record explicit human approval of this Code Generation plan.
+- [x] Reconfirm approved inputs and verify no upstream approval has changed.
+- [x] Create TypeScript/Node package scaffold with approved minimal dev tooling.
+- [x] Replace or remove non-production Python placeholder source/test files.
+- [x] Create root `tests/` folder for TypeScript tests.
+- [x] Implement UNIT-01 memory category catalog and category validation.
+- [x] Implement UNIT-01 value objects and lifecycle memory record model.
+- [x] Implement artifact source classification rules and template-vs-project boundary.
+- [x] Implement lifecycle relationship catalog and edge validation.
+- [x] Implement historical record policy.
+- [x] Add tests for category coverage, memory invariants, template exclusion, relationship validation, and historical record behavior.
+- [x] Add `src/docs/` classified examples or fixtures only if needed for tests.
+- [x] Create `docs/02-construction/04-code-generation/code_generation_report.md`.
+- [x] Run available verification checks: install/build/typecheck/tests using approved toolchain.
+- [x] Create `docs/02-construction/04-code-generation/test_results.md`.
+- [x] If tests/checks fail, document failures and request approval before applying non-trivial fixes.
+- [x] Update `PROJECT_STATUS.md`.
+- [x] Write a session log in `session-logs/`.
 
 ## Planned Verification
 
@@ -142,3 +142,15 @@ If this plan is approved, the following implementation authorizations are includ
 ## Execution Notes
 
 - 2026-06-05: Plan created by Codex for human review. No implementation, tests, package files, dependency files, runtime structure changes, code-generation report, or test-results report were created.
+- 2026-06-05: User approved `docs/02-construction/02-design-plan/code_generation_plan.md`; execution started for BOLT-01 / UNIT-01 only.
+- 2026-06-05: Reconfirmed approved inputs and current repository baseline before implementation.
+- 2026-06-05: Created TypeScript/Node package scaffold with `package.json`, `tsconfig.json`, and `src/index.ts`.
+- 2026-06-05: Removed non-production Python placeholder source/test files: `src/placeholder_app.py` and `src/tests/test_placeholder.py`.
+- 2026-06-05: Implemented UNIT-01 lifecycle memory core in `src/domain/lifecycle-memory-core.ts`.
+- 2026-06-05: Created root `tests/` folder with `tests/lifecycle-memory-core.test.ts`.
+- 2026-06-05: Added UNIT-01 tests for category coverage, memory invariants, template exclusion, relationship validation, and historical record behavior.
+- 2026-06-05: No additional `src/docs/` fixtures were needed for this slice.
+- 2026-06-05: Ran approved verification. `npm install` required escalation after sandbox cache-only `ENOTCACHED`; escalated install passed with 0 vulnerabilities.
+- 2026-06-05: `npm run build`, `npm run typecheck`, and final `npm test` passed. Initial `node --test` worker mode failed with sandbox `spawn EPERM`; script was adjusted to direct compiled test-file execution.
+- 2026-06-05: Created `docs/02-construction/04-code-generation/code_generation_report.md` and `docs/02-construction/04-code-generation/test_results.md`.
+- 2026-06-05: Updated `PROJECT_STATUS.md` and wrote `session-logs/20260605_0840_codex_code-generation-unit01.md`.

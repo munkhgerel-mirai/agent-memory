@@ -17,8 +17,8 @@ Key Objectives:
 
 ## Current Status
 
-**Phase:** CONSTRUCTION - CODE GENERATION PLANNING  
-**Status:** CODE GENERATION PLAN CREATED - PENDING HUMAN REVIEW
+**Phase:** CONSTRUCTION - CODE GENERATION  
+**Status:** CODE GENERATION FIRST SLICE COMPLETE - PENDING HUMAN REVIEW
 
 ---
 
@@ -55,22 +55,27 @@ Key Objectives:
 - Cross-Unit system architecture synthesis generated in `docs/02-construction/01-architecture/system_architecture.md`.
 - System architecture and all Unit Logical Design artifacts reviewed and approved by the user on 2026-06-05.
 - Code Generation planning started with `docs/02-construction/02-design-plan/code_generation_plan.md`.
+- Code Generation plan approved by the user on 2026-06-05.
+- First implementation slice completed for BOLT-01 / UNIT-01 Lifecycle Memory Core.
+- TypeScript/Node package scaffold created with approved minimal dev tooling.
+- Non-production Python placeholder source/test files removed.
+- Code Generation Report created in `docs/02-construction/04-code-generation/code_generation_report.md`.
+- Test Results created in `docs/02-construction/04-code-generation/test_results.md`.
 
 ---
 
 ## Next Steps
 
-1. Review `docs/02-construction/02-design-plan/code_generation_plan.md`.
-2. Approve the Code Generation plan or request changes.
-3. After approval, execute only the first implementation slice described in the plan.
-4. Keep code, tests, dependency installation, runtime-structure changes, and deployment work blocked until this plan or a downstream plan is approved.
+1. Review `docs/02-construction/04-code-generation/code_generation_report.md`.
+2. Review `docs/02-construction/04-code-generation/test_results.md`.
+3. Approve the first Code Generation slice or request changes.
+4. Begin the next implementation slice only with a new or approved follow-up plan.
 
 ---
 
 ## Risks / Blockers
 
 - `README.md` still presents the repository as the AI-DLC template and should be made project-specific before external use.
-- `src/placeholder_app.py` and `src/tests/test_placeholder.py` remain template skeletons by design.
 - Future technology changes require a recorded Human Selection Gate before ADR approval or downstream use.
-- Code and test generation remain blocked until `docs/02-construction/02-design-plan/code_generation_plan.md` is approved.
+- Further code and test generation beyond BOLT-01 / UNIT-01 first slice remains blocked until a downstream plan is approved.
 - Product/runtime documentation assets must not be added to root `docs/`; use `src/docs/` instead.
