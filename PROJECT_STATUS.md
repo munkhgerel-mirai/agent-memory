@@ -1,6 +1,6 @@
 # Agent-memory Project Status
 
-**Last Updated:** 2026-06-05
+**Last Updated:** 2026-06-12
 
 ---
 
@@ -18,7 +18,7 @@ Key Objectives:
 ## Current Status
 
 **Phase:** CONSTRUCTION - CODE GENERATION  
-**Status:** CODE GENERATION FIRST SLICE COMPLETE - PENDING HUMAN REVIEW
+**Status:** CODE GENERATION FIRST SLICE APPROVED - NEXT PLAN REQUIRED
 
 ---
 
@@ -61,15 +61,15 @@ Key Objectives:
 - Non-production Python placeholder source/test files removed.
 - Code Generation Report created in `docs/02-construction/04-code-generation/code_generation_report.md`.
 - Test Results created in `docs/02-construction/04-code-generation/test_results.md`.
+- Code Generation Report reviewed and approved by the user on 2026-06-12.
+- Test Results reviewed and approved by the user on 2026-06-12.
 
 ---
 
 ## Next Steps
 
-1. Review `docs/02-construction/04-code-generation/code_generation_report.md`.
-2. Review `docs/02-construction/04-code-generation/test_results.md`.
-3. Approve the first Code Generation slice or request changes.
-4. Begin the next implementation slice only with a new or approved follow-up plan.
+1. Create a new or approved follow-up plan before beginning the next implementation slice.
+2. Keep future storage/rebuild, governance operations, CLI/MCP/local API, iii adapter, semantic retrieval, deployment, or README rewrite work behind the appropriate AI-DLC plan and approval gate.
 
 ---
 
@@ -78,4 +78,5 @@ Key Objectives:
 - `README.md` still presents the repository as the AI-DLC template and should be made project-specific before external use.
 - Future technology changes require a recorded Human Selection Gate before ADR approval or downstream use.
 - Further code and test generation beyond BOLT-01 / UNIT-01 first slice remains blocked until a downstream plan is approved.
+- Deployment planning remains deferred until a deployment scope is selected through an approved AI-DLC deployment plan.
 - Product/runtime documentation assets must not be added to root `docs/`; use `src/docs/` instead.

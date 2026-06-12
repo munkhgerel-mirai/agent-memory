@@ -5,7 +5,7 @@
 
 ## Approval Status
 
-Pending human review. Generated from approved `docs/02-construction/02-design-plan/code_generation_plan.md`.
+Approved by user on 2026-06-12. Generated from approved `docs/02-construction/02-design-plan/code_generation_plan.md`.
 
 ## Summary
 
@@ -78,6 +78,6 @@ Pending human review. Generated from approved `docs/02-construction/02-design-pl
 
 ## Follow-Ups
 
-- Review and approve the Code Generation report and Test Results.
+- Test Results artifact approved on 2026-06-12; no first-slice review artifacts remain pending.
 - Plan the next implementation slice before adding storage/rebuild, governance operations, CLI/MCP/local API, iii adapter, or semantic retrieval.
 - Decide whether future tests should use a small custom test runner or remain direct `node:test` execution if sandbox child-process restrictions continue.
