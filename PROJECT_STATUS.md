@@ -1,6 +1,6 @@
 # Agent-memory Project Status
 
-**Last Updated:** 2026-06-12
+**Last Updated:** 2026-06-15
 
 ---
 
@@ -18,7 +18,7 @@ Key Objectives:
 ## Current Status
 
 **Phase:** CONSTRUCTION - CODE GENERATION  
-**Status:** CODE GENERATION FIRST SLICE APPROVED - NEXT PLAN REQUIRED
+**Status:** BOLT-02 CODE GENERATION COMPLETE - PENDING HUMAN REVIEW
 
 ---
 
@@ -63,13 +63,20 @@ Key Objectives:
 - Test Results created in `docs/02-construction/04-code-generation/test_results.md`.
 - Code Generation Report reviewed and approved by the user on 2026-06-12.
 - Test Results reviewed and approved by the user on 2026-06-12.
+- BOLT-02 / UNIT-02 Code Generation follow-up plan created in `docs/02-construction/02-design-plan/code_generation_followup_plan_bolt02.md` on 2026-06-15.
+- BOLT-02 / UNIT-02 Code Generation follow-up plan approved by the user on 2026-06-15.
+- BOLT-02 implementation completed with local storage/rebuild/search foundation, JSONL event validation, `node:sqlite` derived projection, rebuild coordinator, and BOLT-02 tests.
+- BOLT-02 Code Generation Report created in `docs/02-construction/04-code-generation/code_generation_report_bolt02.md`.
+- BOLT-02 Test Results created in `docs/02-construction/04-code-generation/test_results_bolt02.md`.
 
 ---
 
 ## Next Steps
 
-1. Create a new or approved follow-up plan before beginning the next implementation slice.
-2. Keep future storage/rebuild, governance operations, CLI/MCP/local API, iii adapter, semantic retrieval, deployment, or README rewrite work behind the appropriate AI-DLC plan and approval gate.
+1. Review `docs/02-construction/04-code-generation/code_generation_report_bolt02.md`.
+2. Review `docs/02-construction/04-code-generation/test_results_bolt02.md`.
+3. Approve the BOLT-02 Code Generation slice or request changes.
+4. Keep BOLT-03, UNIT-04 governance, MCP/CLI/API, iii adapter, semantic retrieval, deployment, and README rewrite work behind later approved plans.
 
 ---
 
@@ -77,6 +84,6 @@ Key Objectives:
 
 - `README.md` still presents the repository as the AI-DLC template and should be made project-specific before external use.
 - Future technology changes require a recorded Human Selection Gate before ADR approval or downstream use.
-- Further code and test generation beyond BOLT-01 / UNIT-01 first slice remains blocked until a downstream plan is approved.
+- Further code and test generation beyond BOLT-02 remains blocked until BOLT-02 review is approved and a later follow-up plan is approved.
 - Deployment planning remains deferred until a deployment scope is selected through an approved AI-DLC deployment plan.
 - Product/runtime documentation assets must not be added to root `docs/`; use `src/docs/` instead.
