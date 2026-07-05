@@ -1,6 +1,6 @@
 # Agent-memory Project Status
 
-**Last Updated:** 2026-06-15
+**Last Updated:** 2026-07-06
 
 ---
 
@@ -18,7 +18,7 @@ Key Objectives:
 ## Current Status
 
 **Phase:** CONSTRUCTION - CODE GENERATION  
-**Status:** BOLT-02 CODE GENERATION COMPLETE - PENDING HUMAN REVIEW
+**Status:** BOLT-05 CODE GENERATION COMPLETE - PENDING HUMAN REVIEW
 
 ---
 
@@ -68,15 +68,38 @@ Key Objectives:
 - BOLT-02 implementation completed with local storage/rebuild/search foundation, JSONL event validation, `node:sqlite` derived projection, rebuild coordinator, and BOLT-02 tests.
 - BOLT-02 Code Generation Report created in `docs/02-construction/04-code-generation/code_generation_report_bolt02.md`.
 - BOLT-02 Test Results created in `docs/02-construction/04-code-generation/test_results_bolt02.md`.
+- BOLT-02 Code Generation Report reviewed and approved by the user on 2026-06-16.
+- BOLT-02 Test Results reviewed and approved by the user on 2026-06-16.
+- BOLT-03 / UNIT-02 Code Generation follow-up plan created in `docs/02-construction/02-design-plan/code_generation_followup_plan_bolt03.md` on 2026-06-16.
+- BOLT-03 / UNIT-02 Code Generation follow-up plan approved by the user on 2026-06-16.
+- BOLT-03 implementation completed with retrieval intent, token budget, deterministic estimator, lifecycle-aware ranking, startup context pack builder, and BOLT-03 tests.
+- BOLT-03 Code Generation Report created in `docs/02-construction/04-code-generation/code_generation_report_bolt03.md`.
+- BOLT-03 Test Results created in `docs/02-construction/04-code-generation/test_results_bolt03.md`.
+- BOLT-03 Code Generation Report reviewed and approved by the user on 2026-06-16.
+- BOLT-03 Test Results reviewed and approved by the user on 2026-06-16.
+- BOLT-04 / UNIT-04 Code Generation follow-up plan created in `docs/02-construction/02-design-plan/code_generation_followup_plan_bolt04.md` on 2026-06-16.
+- BOLT-04 / UNIT-04 Code Generation follow-up plan approved by the user on 2026-06-16.
+- BOLT-04 implementation completed with governance metadata, provenance validation, sensitive-content guard, retention validation, governed write decisions, memory operation decisions, and BOLT-04 tests.
+- BOLT-04 Code Generation Report created in `docs/02-construction/04-code-generation/code_generation_report_bolt04.md`.
+- BOLT-04 Test Results created in `docs/02-construction/04-code-generation/test_results_bolt04.md`.
+- BOLT-04 Code Generation Report reviewed and approved by the user on 2026-06-16.
+- BOLT-04 Test Results reviewed and approved by the user on 2026-06-16.
+- BOLT-05 / UNIT-03 Code Generation follow-up plan created in `docs/02-construction/02-design-plan/code_generation_followup_plan_bolt05.md` on 2026-06-16.
+- BOLT-05 / UNIT-03 Code Generation follow-up plan approved by the user on 2026-07-06.
+- BOLT-05 implementation completed with framework-agnostic capability contracts, invocation context, request/response envelopes, MCP/CLI/local API descriptor maps, capability router foundation, governance-required operation routing, and memory job lifecycle types.
+- BOLT-05 tests added for capability validation, descriptor consistency, governance-required flags, local projection query/inspect routing, memory job observations, and no-transport dependency boundaries.
+- BOLT-05 final verification passed on 2026-07-06: `npm run build`, `npm run typecheck`, and `npm test` completed successfully with 33 tests.
+- BOLT-05 Code Generation Report created in `docs/02-construction/04-code-generation/code_generation_report_bolt05.md`.
+- BOLT-05 Test Results created in `docs/02-construction/04-code-generation/test_results_bolt05.md`.
 
 ---
 
 ## Next Steps
 
-1. Review `docs/02-construction/04-code-generation/code_generation_report_bolt02.md`.
-2. Review `docs/02-construction/04-code-generation/test_results_bolt02.md`.
-3. Approve the BOLT-02 Code Generation slice or request changes.
-4. Keep BOLT-03, UNIT-04 governance, MCP/CLI/API, iii adapter, semantic retrieval, deployment, and README rewrite work behind later approved plans.
+1. Review `docs/02-construction/04-code-generation/code_generation_report_bolt05.md`.
+2. Review `docs/02-construction/04-code-generation/test_results_bolt05.md`.
+3. Approve the BOLT-05 Code Generation slice or request changes.
+4. Keep MCP server, CLI binary, local HTTP API server, iii adapter, semantic retrieval, deployment, and README rewrite work behind later approved plans.
 
 ---
 
@@ -84,6 +107,6 @@ Key Objectives:
 
 - `README.md` still presents the repository as the AI-DLC template and should be made project-specific before external use.
 - Future technology changes require a recorded Human Selection Gate before ADR approval or downstream use.
-- Further code and test generation beyond BOLT-02 remains blocked until BOLT-02 review is approved and a later follow-up plan is approved.
+- Further code and test generation beyond BOLT-05 remains blocked until BOLT-05 review is approved and a later follow-up plan is approved.
 - Deployment planning remains deferred until a deployment scope is selected through an approved AI-DLC deployment plan.
 - Product/runtime documentation assets must not be added to root `docs/`; use `src/docs/` instead.

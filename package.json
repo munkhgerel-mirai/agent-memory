@@ -11,7 +11,7 @@
   "scripts": {
     "build": "tsc -p tsconfig.json",
     "typecheck": "tsc -p tsconfig.json --noEmit",
-    "test": "npm run build && node dist/tests/lifecycle-memory-core.test.js && node dist/tests/local-workspace-storage.test.js"
+    "test": "npm run build && node dist/tests/lifecycle-memory-core.test.js && node dist/tests/local-workspace-storage.test.js && node dist/tests/retrieval-context.test.js && node dist/tests/privacy-governance.test.js && node dist/tests/framework-agnostic-integration.test.js"
   },
   "devDependencies": {
     "@types/node": "^24.0.0",

@@ -5,7 +5,7 @@
 
 ## Approval Status
 
-Pending human review. Generated from approved `docs/02-construction/02-design-plan/code_generation_followup_plan_bolt02.md`.
+Approved by user on 2026-06-16. Generated from approved `docs/02-construction/02-design-plan/code_generation_followup_plan_bolt02.md`.
 
 ## Summary
 
@@ -76,7 +76,7 @@ Pending human review. Generated from approved `docs/02-construction/02-design-pl
 
 ## Follow-Ups
 
-- Review and approve this BOLT-02 Code Generation Report and `docs/02-construction/04-code-generation/test_results_bolt02.md`.
+- BOLT-02 Code Generation Report and Test Results approved on 2026-06-16; no BOLT-02 review artifacts remain pending.
 - Plan BOLT-03 before adding startup context packs, token-budgeted context packing, and 2000-token enforcement.
 - Plan UNIT-04 governance before implementing durable secret/PII redaction, delete/export, raw observation retention, or visibility enforcement beyond current metadata fields.
 - Plan UNIT-03 before adding CLI, MCP, local API, iii adapter, or job orchestration surfaces.
