@@ -245,3 +245,100 @@ These dispositions were recorded from the approved Human Selection Gate on 2026-
 | TDG-003 | Which TD-003 candidate should be selected, deferred, rejected, or sent for more analysis? | Human | Resolved: Selected local-first rebuildable storage posture on 2026-06-04 |
 | TDG-004 | Which TD-004 candidate should be selected, deferred, rejected, or sent for more analysis? | Human | Resolved: Selected no automatic raw observation retention by default with configurable TTL when enabled on 2026-06-04 |
 | TDG-005 | Which TD-005 candidate should be selected, deferred, rejected, or sent for more analysis? | Human | Resolved: Selected defer embeddings from v1 with v1.1 extension boundary on 2026-06-04 |
+
+## Addendum - ADR-006 MCP Server Implementation Approach
+
+**Date:** 2026-08-26  
+**Status:** Approved by the user on 2026-08-26  
+**Decision Scope:** BOLT-12 MCP stdio server integration and the project's first runtime dependencies
+
+This addendum leaves approved ADR-001 through ADR-005 unchanged. It records the separately approved ADR-006 follow-up workflow and its current Human Selection Gate.
+
+### Decision Summary
+
+| ADR ID | Decision Area | Title | Status | Confidence | Reversibility | Human Selection | Approval |
+|--------|---------------|-------|--------|------------|---------------|-----------------|----------|
+| ADR-006 | Integration / Dependency | MCP server implementation approach | Approved | High | High | Candidate A selected | User / 2026-08-26 |
+
+### Primary Sources Reviewed
+
+| Source | Verified Observation | Decision Impact |
+|--------|----------------------|-----------------|
+| MCP specification, revision 2026-07-28 | Stdio is newline-delimited UTF-8 JSON-RPC. Modern requests carry protocol metadata; servers implement version negotiation/discovery, tools/list, tools/call, protocol and execution errors, cancellation, and process lifecycle rules. | A direct implementation is substantially more than JSON parsing and tool dispatch. |
+| Official TypeScript SDK repository and v2 documentation | v2 is the stable line and uses split packages. `@modelcontextprotocol/server` provides `McpServer`, `serveStdio`, schema validation, modern protocol support, and default 2025-era stdio compatibility. | Candidate A should use the current server package, not the legacy monolithic `@modelcontextprotocol/sdk`. |
+| Official SDK tiering | TypeScript is Tier 1: stable release, complete applicable protocol implementation, 100% conformance expectation, documented dependency policy, and maintenance commitments. | Strongest interoperability and supportability evidence. |
+| Published `@modelcontextprotocol/server` metadata | Version 2.0.0, Node >=20, ESM/CJS exports including `/stdio`, two runtime dependencies, and npm provenance. | Compatible with Agent-memory's Node >=22.5 runtime; adds a bounded runtime dependency surface. |
+| SDK package manifest and dependency policy | Runtime dependencies are `@modelcontextprotocol/core` and Zod; internal SDK packages publish as exact pins, dependency updates are conservative, and install scripts are allow-listed upstream. | Supply-chain exposure exists but is small, explicit, and governed. |
+| SDK versioning and roadmap | SemVer is documented; dropping a Node LTS, transport, or supported MCP revision is breaking. v2 hardening is active; v1 receives limited maintenance after v2 release. | Pin the selected v2 major/minor baseline and review upgrades deliberately. |
+
+### Minimum BOLT-12 Protocol Behavior
+
+- Serve MCP over local stdio without hosted infrastructure.
+- Keep stdout exclusively for protocol messages and diagnostics on stderr.
+- Support the SDK's default dual-era stdio behavior so current 2025-era clients and modern 2026-era clients can connect.
+- Advertise deterministic tools generated from `MCP_TOOL_DESCRIPTORS`.
+- Generate validated input schemas from `CapabilityPayloadField`; no hand-maintained duplicate capability list.
+- Route every tool invocation through `CapabilityRouter`, including governance-required export and delete.
+- Map unknown tools and malformed protocol input to protocol errors; map domain validation and operation failures to actionable tool results without leaking protected content.
+- Honour cancellation and clean shutdown through the SDK transport lifecycle.
+- Validate with the official in-memory/client test path, MCP Inspector or an equivalent official client, and at least one real host used by BOLT-12 acceptance.
+
+### Candidate Comparison
+
+| Candidate | Fit | Principal Benefits | Principal Risks / Costs | Operability | Reversibility |
+|-----------|-----|--------------------|-------------------------|-------------|---------------|
+| A. Official TypeScript MCP SDK v2 (`@modelcontextprotocol/server`) | High | Tier 1 conformance and maintenance; stdio and dual-era support; protocol lifecycle, validation, errors, cancellation, and evolution handled by the SDK; direct fit with TypeScript/Node. | First runtime dependencies; v2 is actively hardening; high-level tool registration uses Zod-compatible schemas; upgrades need review. | High | High |
+| B. Dependency-free stdio JSON-RPC | Low-Medium | No third-party runtime dependency; complete local control. | Project owns modern and legacy protocol negotiation, discovery, metadata, framing, cancellation, error semantics, schema validation, conformance testing, and future revisions. Interoperability defects directly block US-001 and US-005. | Low-Medium | Medium |
+| C. Defer ADR-006 / BOLT-12 | Low | No immediate dependency or implementation risk. | Leaves the primary v1 outcome inaccessible to agents and US-005 AC-001 unmet; blocks BOLT-14. | High for current CLI only | High |
+
+### Human Selection Gate
+
+| Gate Status | Selected Option | Selector / Date | Selection Rationale | Conditions | Downstream Authorization |
+|-------------|-----------------|-----------------|---------------------|------------|--------------------------|
+| Selected and approved | Candidate A, refined to official v2 `@modelcontextprotocol/server` | User / 2026-08-26 | Official SDK gives the strongest protocol interoperability and maintenance path while adapter isolation limits lock-in. | Pin the reviewed v2 baseline; inspect lockfile and transitive dependencies; keep SDK and schema-library imports outside `src/domain/`; generate tools from existing descriptors; route all calls through `CapabilityRouter`; test modern and legacy clients, malformed input, cancellation, and governance; expose no SDK types in domain contracts. | Authorizes a BOLT-12 Code Generation follow-up plan to propose the dependency and implementation. Installation and code changes still require that plan's explicit approval. |
+
+## ADR-006: MCP Server Implementation Approach
+
+- **Status:** Approved
+- **Decision Area:** Integration / Dependency
+- **Context:** BOLT-12 must expose Agent-memory's approved capabilities to MCP-capable agents over stdio. This is required for US-001 and US-005 AC-001 and would introduce the project's first third-party runtime dependencies. The existing `MCP_TOOL_DESCRIPTORS` and `CapabilityRouter` already isolate transport from domain behavior.
+- **Decision:** Use the official TypeScript MCP SDK v2 server package, `@modelcontextprotocol/server`, as a thin stdio transport adapter. Use its default dual-era stdio serving behavior. Generate MCP tools from the existing descriptors and route every invocation through `CapabilityRouter`.
+- **Human Selection Status:** Selected and approved
+- **Selected Option:** Candidate A, official TypeScript MCP SDK v2 server package
+- **Selector / Date:** User / 2026-08-26
+- **Selection Rationale:** The official Tier 1 SDK reduces protocol-conformance, interoperability, lifecycle, error, cancellation, and evolution risk. Adapter isolation keeps replacement possible without changing domain, retrieval, governance, or storage contracts.
+- **Selection Conditions:** Pin the reviewed v2 baseline; inspect package-lock changes and transitive dependencies; use no HTTP middleware package for the stdio-only BOLT-12 slice; keep SDK/Zod imports outside `src/domain/`; derive tools and schemas from approved descriptors; route all calls through `CapabilityRouter`; preserve governance decisions; test both protocol eras and real-client interoperability; keep stdout protocol-clean; expose no SDK type through domain APIs.
+- **Downstream Authorization:** Authorizes a BOLT-12 Code Generation follow-up plan to propose adding `@modelcontextprotocol/server` and the minimum schema dependency required by the selected registration API. It does not itself authorize installation, package or lockfile edits, source changes, tests, deployment, or publication; those require explicit approval of the BOLT-12 plan.
+- **Rationale:** MCP's current protocol includes modern per-request metadata and discovery as well as legacy initialization compatibility. The official SDK implements both eras through one stdio entry point and carries Tier 1 conformance and maintenance commitments. A hand-written adapter would recreate protocol machinery unrelated to Agent-memory's differentiating capability and governance logic.
+- **Alternatives Considered:** Dependency-free stdio JSON-RPC implementation; defer MCP/BOLT-12; legacy monolithic `@modelcontextprotocol/sdk` v1.
+- **Consequences:** BOLT-12 gains the shortest standards-conformant path and can validate against official clients. The project accepts a small third-party runtime dependency surface and must monitor SDK updates. Existing boundary tests must be narrowed deliberately to `src/domain/`, while the MCP adapter remains outside that directory.
+- **Risks:** v2 is stable but still in active hardening; SDK API or protocol revisions may require adapter updates. Schema generation from existing descriptor metadata must not drift from SDK validation. A compromised dependency could access local workspace data in process.
+- **Security / Privacy / Compliance Impact:** Positive protocol input validation and bounded error handling, with added supply-chain exposure. Stdio remains local and adds no network listener. Governance remains authoritative because every call uses `CapabilityRouter`; destructive tools retain policy and confirmation semantics. Lockfile review, vulnerability scanning, least-output behavior, and protocol-clean stdout are required.
+- **Operational Impact:** Local hosts launch one stdio subprocess. No managed or paid service is required. The default dual-era posture maximizes compatibility; stderr is reserved for diagnostics. Concurrency and simultaneous rebuild policy remain a BOLT-12 planning concern.
+- **Cost Impact:** Low; open-source local dependency with no hosted service cost. Maintenance cost shifts from protocol implementation to controlled SDK upgrades.
+- **Migration / Rollback Impact:** The adapter can be replaced with another SDK or direct protocol implementation because domain contracts and capabilities remain SDK-free. Rollback removes the MCP adapter and dependencies while leaving CLI, local storage, and domain behavior intact.
+- **Reversibility:** High
+- **Confidence:** High
+- **Related Units:** UNIT-03
+- **Related User Stories:** US-001; US-005 AC-001
+- **Related NFRs:** NFR-005, NFR-015, NFR-019
+- **Related Risks:** R-006, R-011, R-013; new first-runtime-dependency supply-chain risk from the approved v1 release plan
+- **Related Design Artifacts:** `unit_03_framework_agnostic_integration_and_runtime_adapter_logical_design.md`, `bolts_plan_addendum_v1_release.md`, `v1_release_plan.md`, `technology_decision_followup_plan_adr006.md`
+- **Follow-Ups:** Create and approve the BOLT-12 Code Generation follow-up plan; inspect exact dependency and lockfile diff before installation; resolve ADR006-OQ-001 through ADR006-OQ-003; scope concurrency; implement adapter outside `src/domain/`; add real-client, dual-era, cancellation, malformed-input, governance, and boundary tests.
+- **Approval:** User / 2026-08-26
+
+### Rejected Or Deferred Options For ADR-006
+
+| Option | Status | Reason | Revisit Trigger |
+|--------|--------|--------|-----------------|
+| Dependency-free stdio JSON-RPC | Not selected | Avoids dependencies but transfers complete protocol conformance, dual-era interoperability, lifecycle, schema validation, error, cancellation, and evolution ownership to this project. | Official SDK becomes unsupported, materially unsafe, or incompatible with required hosts. |
+| Defer ADR-006 / BOLT-12 | Not selected | Blocks the primary agent-facing outcome and v1 acceptance. | Product scope explicitly drops MCP or v1 is reclassified as CLI-only preview. |
+| Legacy `@modelcontextprotocol/sdk` v1 | Rejected for new implementation | v2 is the stable line; v1 is a maintenance line with limited post-v2 support. | A required host proves incompatible with v2's default legacy stdio support. |
+
+### Open Questions For ADR-006
+
+| ID | Question | Owner | Needed By |
+|----|----------|-------|-----------|
+| ADR006-OQ-001 | Should BOLT-12 use the documented high-level Zod registration API or a lower-level SDK request handler to consume generated raw JSON Schema? | BOLT-12 plan reviewer | Before dependency installation |
+| ADR006-OQ-002 | Which real MCP host, in addition to the official client/Inspector, is the acceptance target? | Human / BOLT-12 plan reviewer | Before BOLT-12 test design |
+| ADR006-OQ-003 | What workspace-level lock or single-writer policy prevents simultaneous MCP and CLI rebuild/delete races? | Human / engineering | Before BOLT-12 execution |

@@ -22,6 +22,40 @@ export type RetrievalMode = (typeof RETRIEVAL_MODES)[number];
 
 export const DEFAULT_STARTUP_TOKEN_BUDGET = 2000;
 
+/**
+ * NFR-002 caps the default at 2000 tokens "unless an explicit expanded retrieval mode is
+ * requested". `handoff` and `audit` are those explicit modes, so they may carry more.
+ */
+export const EXPANDED_TOKEN_BUDGET = 20000;
+
+export const DEFAULT_SECTION_TOKEN_CAP = 500;
+
+const DEFAULT_BUDGET_BY_MODE: Record<RetrievalMode, number> = {
+  startup: DEFAULT_STARTUP_TOKEN_BUDGET,
+  focused: 4000,
+  handoff: EXPANDED_TOKEN_BUDGET,
+  audit: EXPANDED_TOKEN_BUDGET,
+};
+
+export interface CategoryReservation {
+  readonly label: string;
+  readonly categories: readonly MemoryCategoryName[];
+  readonly share: number;
+}
+
+/**
+ * Startup packing reserves budget per lifecycle category so the pack's shape matches what
+ * US-001 AC-001 enumerates, rather than whatever happens to rank highest. Unfilled
+ * reservations spill back into the general pool, so a workspace missing a category loses
+ * nothing.
+ */
+export const STARTUP_CATEGORY_RESERVATIONS: readonly CategoryReservation[] = [
+  { label: "continuity", categories: ["SessionHandoffMemory"], share: 0.25 },
+  { label: "active-plan", categories: ["PlanMemory", "ApprovalGateMemory"], share: 0.25 },
+  { label: "decisions", categories: ["DecisionMemory"], share: 0.2 },
+  { label: "blockers", categories: ["RiskMemory"], share: 0.15 },
+];
+
 export interface QueryIntent {
   readonly mode: RetrievalMode;
   readonly goal?: string;
@@ -72,6 +106,15 @@ export interface ContextPackItem {
   readonly inclusionReason: string;
   readonly tokenEstimate: number;
   readonly content: string;
+  /** Absent for an artifact's preamble, or for an artifact with no headings. */
+  readonly sectionHeading?: string;
+  readonly truncated?: boolean;
+}
+
+export interface ArtifactSection {
+  readonly heading?: string;
+  readonly content: string;
+  readonly isBulletList: boolean;
 }
 
 export interface ContextPack {
@@ -90,6 +133,8 @@ export interface BuildContextPackInput {
   readonly candidates: readonly RetrievalCandidate[];
   readonly tokenBudget?: TokenBudget;
   readonly builtAt: string;
+  readonly sectionTokenCap?: number;
+  readonly reservations?: readonly CategoryReservation[];
 }
 
 export interface RetrieveStartupContextInput extends Omit<CreateQueryIntentInput, "mode"> {
@@ -115,7 +160,7 @@ export function createQueryIntent(input: CreateQueryIntentInput = {}): QueryInte
 export function createTokenBudget(input: CreateTokenBudgetInput = {}): TokenBudget {
   const mode = input.mode ?? "startup";
   assertRetrievalMode(mode);
-  const maximumTokens = input.maximumTokens ?? (mode === "startup" ? DEFAULT_STARTUP_TOKEN_BUDGET : 4000);
+  const maximumTokens = input.maximumTokens ?? DEFAULT_BUDGET_BY_MODE[mode];
 
   if (!Number.isInteger(maximumTokens) || maximumTokens <= 0) {
     throw new RetrievalContextValidationError("Token budget must be a positive integer.");
@@ -152,29 +197,22 @@ export function rankRetrievalCandidates(
     });
 }
 
+/**
+ * Packs sections rather than whole documents. AI-DLC artifacts run to thousands of tokens, so
+ * whole-document packing let a single artifact consume a 2000-token budget and left US-001
+ * unanswerable. A section keeps its parent's provenance, so US-001 AC-003 still holds.
+ */
 export function buildContextPack(input: BuildContextPackInput): ContextPack {
   const tokenBudget = input.tokenBudget ?? createTokenBudget({ mode: input.intent.mode });
-  let estimatedTokens = 0;
-  const items: ContextPackItem[] = [];
+  const sectionCap = input.sectionTokenCap ?? DEFAULT_SECTION_TOKEN_CAP;
+  const packable = collectPackableSections(input.candidates, sectionCap);
 
-  for (const candidate of input.candidates) {
-    const content = renderContextPackItemContent(candidate);
-    const tokenEstimate = estimateTokens(content);
-    if (estimatedTokens + tokenEstimate > tokenBudget.maximumTokens) {
-      continue;
-    }
+  const reservations =
+    input.reservations ?? (input.intent.mode === "startup" ? STARTUP_CATEGORY_RESERVATIONS : []);
+  const selected = selectWithinBudget(packable, tokenBudget.maximumTokens, reservations);
 
-    items.push({
-      memoryId: candidate.record.memoryId,
-      sourcePath: candidate.record.workspacePath,
-      category: candidate.record.category,
-      approvalStatus: candidate.record.approvalStatus,
-      inclusionReason: candidate.rationale.explanation,
-      tokenEstimate,
-      content,
-    });
-    estimatedTokens += tokenEstimate;
-  }
+  const items = packable.filter((_, index) => selected.has(index)).map((entry) => entry.item);
+  const estimatedTokens = items.reduce((total, item) => total + item.tokenEstimate, 0);
 
   return {
     mode: input.intent.mode,
@@ -183,9 +221,201 @@ export function buildContextPack(input: BuildContextPackInput): ContextPack {
     tokenBudget,
     estimatedTokens,
     items,
-    omittedCandidateCount: Math.max(0, input.candidates.length - items.length),
+    omittedCandidateCount: Math.max(0, packable.length - items.length),
     builtAt: input.builtAt,
   };
+}
+
+/**
+ * Splits artifact text on Markdown headings. Content before the first heading becomes an
+ * unnamed preamble, and an artifact with no headings yields exactly one section, so the
+ * caller never has to special-case either shape.
+ */
+export function splitArtifactSections(text: string): readonly ArtifactSection[] {
+  const lines = text.replaceAll("\r\n", "\n").split("\n");
+  const sections: ArtifactSection[] = [];
+  let heading: string | undefined;
+  let buffer: string[] = [];
+
+  const flush = (): void => {
+    const content = buffer.join("\n").trim();
+    if (content.length > 0) {
+      sections.push({ heading, content, isBulletList: isBulletList(content) });
+    }
+    buffer = [];
+  };
+
+  for (const line of lines) {
+    const match = /^#{2,6}\s+(.*)$/u.exec(line);
+    if (match) {
+      flush();
+      heading = match[1]?.trim();
+      continue;
+    }
+
+    buffer.push(line);
+  }
+  flush();
+
+  return sections;
+}
+
+/**
+ * Heading-level signals for the elements US-001 AC-001 enumerates. BOLT-03 already looked for
+ * next-step and blocker wording, but applied it to whole documents where almost everything
+ * matched. Applied to a heading it actually discriminates.
+ */
+const SECTION_HEADING_SIGNALS: readonly { readonly pattern: RegExp; readonly boost: number }[] = [
+  { pattern: /\bproject\s+goal\b|\bgoal\b|\bintent\b|\bpurpose\b/iu, boost: 60 },
+  { pattern: /\bcurrent\s+status\b|\bphase\b/iu, boost: 55 },
+  { pattern: /\bnext\s+steps?\b/iu, boost: 50 },
+  { pattern: /\brisks?\b|\bblockers?\b/iu, boost: 45 },
+];
+
+interface PackableSection {
+  readonly category: MemoryCategoryName;
+  readonly item: ContextPackItem;
+  readonly score: number;
+}
+
+function sectionHeadingBoost(heading: string | undefined): number {
+  if (!heading) return 0;
+
+  return SECTION_HEADING_SIGNALS.find((signal) => signal.pattern.test(heading))?.boost ?? 0;
+}
+
+function collectPackableSections(
+  candidates: readonly RetrievalCandidate[],
+  sectionCap: number,
+): readonly PackableSection[] {
+  const packable: PackableSection[] = [];
+
+  for (const candidate of candidates) {
+    for (const section of splitArtifactSections(candidate.record.text)) {
+      // The cap bounds the packed item, not just its body. The provenance header carries a
+      // free-text inclusion reason, so capping the body alone would leave item size unbounded.
+      const header = renderProvenanceHeader(candidate, section.heading);
+      const capped = capSectionContent(section, Math.max(1, sectionCap - estimateTokens(header)));
+      const content = `${header}\n${capped.content}`;
+
+      packable.push({
+        category: candidate.record.category,
+        // Parent relevance plus heading signal, so a heading boost lifts the right section
+        // without letting an irrelevant document jump the queue on its heading alone.
+        score: candidate.score + sectionHeadingBoost(section.heading),
+        item: {
+          memoryId: candidate.record.memoryId,
+          sourcePath: candidate.record.workspacePath,
+          category: candidate.record.category,
+          approvalStatus: candidate.record.approvalStatus,
+          inclusionReason: candidate.rationale.explanation,
+          tokenEstimate: estimateTokens(content),
+          content,
+          sectionHeading: section.heading,
+          truncated: capped.truncated,
+        },
+      });
+    }
+  }
+
+  return packable
+    .map((entry, index) => ({ entry, index }))
+    .sort((left, right) =>
+      right.entry.score !== left.entry.score
+        ? right.entry.score - left.entry.score
+        : left.index - right.index,
+    )
+    .map(({ entry }) => entry);
+}
+
+function selectWithinBudget(
+  packable: readonly PackableSection[],
+  maximumTokens: number,
+  reservations: readonly CategoryReservation[],
+): ReadonlySet<number> {
+  const selected = new Set<number>();
+  let spent = 0;
+
+  const take = (index: number, tokens: number): void => {
+    selected.add(index);
+    spent += tokens;
+  };
+
+  for (const reservation of reservations) {
+    let allowance = Math.floor(maximumTokens * reservation.share);
+
+    for (const [index, entry] of packable.entries()) {
+      if (selected.has(index)) continue;
+      if (!reservation.categories.includes(entry.category)) continue;
+
+      const tokens = entry.item.tokenEstimate;
+      if (tokens > allowance || spent + tokens > maximumTokens) continue;
+
+      take(index, tokens);
+      allowance -= tokens;
+    }
+  }
+
+  // Unfilled reservations spill back here, so nothing is wasted on an absent category.
+  for (const [index, entry] of packable.entries()) {
+    if (selected.has(index)) continue;
+
+    const tokens = entry.item.tokenEstimate;
+    if (spent + tokens > maximumTokens) continue;
+
+    take(index, tokens);
+  }
+
+  return selected;
+}
+
+const TRUNCATED_HEAD_MARKER = "[earlier entries omitted]";
+const TRUNCATED_TAIL_MARKER = "[remainder omitted]";
+
+/**
+ * A bullet list in this corpus is an append-only log whose newest entry is last, so keeping
+ * the head would return the oldest decisions. Prose leads with its point, so it keeps the head.
+ */
+function capSectionContent(
+  section: ArtifactSection,
+  capTokens: number,
+): { readonly content: string; readonly truncated: boolean } {
+  if (estimateTokens(section.content) <= capTokens) {
+    return { content: section.content, truncated: false };
+  }
+
+  if (section.isBulletList) {
+    const lines = section.content.split("\n");
+    const kept: string[] = [];
+    let tokens = estimateTokens(TRUNCATED_HEAD_MARKER);
+
+    for (let index = lines.length - 1; index >= 0; index -= 1) {
+      const line = lines[index] ?? "";
+      const lineTokens = estimateTokens(line);
+      if (tokens + lineTokens > capTokens) break;
+
+      tokens += lineTokens;
+      kept.unshift(line);
+    }
+
+    return { content: [TRUNCATED_HEAD_MARKER, ...kept].join("\n"), truncated: true };
+  }
+
+  const maxCharacters = Math.max(0, capTokens * 4 - TRUNCATED_TAIL_MARKER.length - 1);
+
+  return {
+    content: `${section.content.slice(0, maxCharacters).trimEnd()}\n${TRUNCATED_TAIL_MARKER}`,
+    truncated: true,
+  };
+}
+
+function isBulletList(content: string): boolean {
+  const lines = content.split("\n").map((line) => line.trim()).filter((line) => line.length > 0);
+  if (lines.length < 3) return false;
+
+  const bullets = lines.filter((line) => /^([-*+]|\d+\.)\s/u.test(line)).length;
+
+  return bullets / lines.length >= 0.6;
 }
 
 export class StartupContextRetriever {
@@ -223,7 +453,10 @@ function rankSearchResult(
   if (result.record.approvalStatus === "approved") {
     score += 50;
     signals.push("ranking:approved-lifecycle-memory");
-  } else if (result.record.approvalStatus === "draft") {
+  } else if (result.record.approvalStatus === "draft" && !isContinuityCategory(result.record.category)) {
+    // A continuity record such as PROJECT_STATUS.md is never "approved" by nature, so
+    // penalising it for being draft is a category error. It is the current state of the
+    // project and US-001 depends on it.
     score -= 10;
     signals.push("ranking:draft-penalty");
   }
@@ -267,6 +500,10 @@ function rankSearchResult(
   };
 }
 
+function isContinuityCategory(category: MemoryCategoryName): boolean {
+  return category === "SessionHandoffMemory";
+}
+
 function startupCategoryBoost(category: MemoryCategoryName): number {
   switch (category) {
     case "PlanMemory":
@@ -287,13 +524,15 @@ function startupCategoryBoost(category: MemoryCategoryName): number {
   }
 }
 
-function renderContextPackItemContent(candidate: RetrievalCandidate): string {
+function renderProvenanceHeader(
+  candidate: RetrievalCandidate,
+  heading: string | undefined,
+): string {
   return [
-    `Source: ${candidate.record.workspacePath}`,
+    `Source: ${candidate.record.workspacePath}${heading ? ` § ${heading}` : ""}`,
     `Category: ${candidate.record.category}`,
     `Approval: ${candidate.record.approvalStatus}`,
     `Reason: ${candidate.rationale.explanation}`,
-    candidate.record.text,
   ].join("\n");
 }
 

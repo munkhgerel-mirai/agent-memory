@@ -9,6 +9,9 @@ __pycache__/
 node_modules/
 dist/
 
+# Agent-memory derived state (rebuildable from Markdown artifacts and the JSONL event log)
+.agent-memory/
+
 # Local environment files
 .env
 .env.*

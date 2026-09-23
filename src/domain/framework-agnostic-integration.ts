@@ -321,6 +321,7 @@ export const CAPABILITY_DEFINITIONS: readonly CapabilityDefinition[] = [
     inputFields: fields([
       ["targetMemoryIds", "string_array", true, "Memory IDs or approved target scope entries to export."],
       ["reason", "string", true, "Human-readable export reason."],
+      ["outputPath", "string", true, "Caller-selected path for the portable export document."],
       ["includeProvenance", "boolean", false, "Whether export output must include provenance."],
     ]),
     jobType: "export",
@@ -336,7 +337,7 @@ export const CAPABILITY_DEFINITIONS: readonly CapabilityDefinition[] = [
     inputFields: fields([
       ["targetMemoryIds", "string_array", true, "Memory IDs or approved target scope entries to delete."],
       ["reason", "string", true, "Human-readable deletion reason."],
-      ["confirmationEvidence", "string", false, "Evidence that the destructive action was confirmed."],
+      ["confirmationEvidence", "string", true, "Evidence that the destructive action was confirmed."],
     ]),
     jobType: "delete",
     trace: GOVERNANCE_TRACE,

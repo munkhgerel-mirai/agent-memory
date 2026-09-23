@@ -405,7 +405,7 @@ function applyMemoryEvent(
   nextRecords: Map<string, ProjectedMemoryRecord>,
   warnings: RebuildWarning[],
 ): void {
-  if (event.eventType === "memory_removed") {
+  if (event.eventType === "memory_removed" || event.eventType === "memory_deleted") {
     if (event.memoryId) {
       nextRecords.delete(event.memoryId);
       return;

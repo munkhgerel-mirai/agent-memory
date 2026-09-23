@@ -5,16 +5,30 @@
   "type": "module",
   "main": "dist/src/index.js",
   "types": "dist/src/index.d.ts",
+  "bin": {
+    "agent-memory": "dist/src/cli/main.js",
+    "agent-memory-mcp": "dist/src/mcp/main.js"
+  },
+  "engines": {
+    "node": ">=22.5.0"
+  },
   "files": [
     "dist"
   ],
   "scripts": {
     "build": "tsc -p tsconfig.json",
     "typecheck": "tsc -p tsconfig.json --noEmit",
-    "test": "npm run build && node dist/tests/lifecycle-memory-core.test.js && node dist/tests/local-workspace-storage.test.js && node dist/tests/retrieval-context.test.js && node dist/tests/privacy-governance.test.js && node dist/tests/framework-agnostic-integration.test.js"
+    "test": "npm run build && node dist/tests/lifecycle-memory-core.test.js && node dist/tests/local-workspace-storage.test.js && node dist/tests/retrieval-context.test.js && node dist/tests/privacy-governance.test.js && node dist/tests/framework-agnostic-integration.test.js && node dist/tests/runtime-adapter-boundary.test.js && node dist/tests/semantic-retrieval-extension.test.js && node dist/tests/workspace-source-reader.test.js && node dist/tests/classification-coverage.test.js && node dist/tests/non-memory-precedence.test.js && node dist/tests/workspace-memory-store.test.js && node dist/tests/cli.test.js && node dist/tests/context-packing.test.js && node dist/tests/governed-memory-operations.test.js && node dist/tests/mcp-server.test.js",
+    "test:v1-readiness": "npm run build && node dist/tests/v1-release-readiness.test.js",
+    "test:v1-scale": "npm run build && node dist/tests/v1-scale.test.js"
   },
   "devDependencies": {
+    "@modelcontextprotocol/client": "2.0.0",
     "@types/node": "^24.0.0",
     "typescript": "^5.9.0"
+  },
+  "dependencies": {
+    "@modelcontextprotocol/server": "2.0.0",
+    "zod": "4.2.0"
   }
 }

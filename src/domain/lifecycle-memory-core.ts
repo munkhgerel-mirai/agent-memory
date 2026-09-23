@@ -252,7 +252,9 @@ export function classifyArtifactSource(
   const normalizedPath = normalizeWorkspacePath(source.workspacePath);
   const lowerPath = normalizedPath.toLowerCase();
   const lowerType = source.artifactType.toLowerCase();
-  const match = matchCategoryRule(lowerPath, lowerType);
+  // Anchored with a leading slash so directory rules such as "/session-logs/" match a
+  // root-level folder as well as a nested one. Anchoring can only add matches, never remove.
+  const match = matchCategoryRule(`/${lowerPath}`, lowerType);
 
   if (!match) {
     throw new LifecycleMemoryValidationError(
@@ -613,6 +615,12 @@ function matchCategoryRule(
     return rule("DecisionMemory", ["PlanMemory"], "path:architecture-artifact");
   }
 
+  // Unit-scoped domain and logical design documents are approved design rationale. Scoped to
+  // `unit_` files so the directory's own README and templates stay out of project memory.
+  if (lowerPath.includes("/03-domain-design/unit_") || lowerType.includes("domain-design")) {
+    return rule("DecisionMemory", ["UnitMemory"], "path:domain-design-artifact");
+  }
+
   if (
     lowerPath.includes("/99-plans/") ||
     lowerPath.includes("/02-design-plan/") ||
@@ -624,6 +632,12 @@ function matchCategoryRule(
 
   if (lowerPath.includes("/session-logs/") || lowerType.includes("session")) {
     return rule("SessionHandoffMemory", [], "path:session-log");
+  }
+
+  // The project status file is the workspace's continuity record: current goal, phase,
+  // blockers, and next steps. US-001 cannot be answered without it.
+  if (lowerPath.endsWith("/project_status.md") || lowerType.includes("project-status")) {
+    return rule("SessionHandoffMemory", ["PlanMemory"], "path:project-status");
   }
 
   if (
@@ -715,6 +729,8 @@ function inferArtifactType(path: string): string {
   if (lowerPath.includes("/04-risks/")) return "risk";
   if (lowerPath.includes("/05-units/")) return "unit";
   if (lowerPath.includes("/06-bolts/")) return "bolt";
+  if (lowerPath.includes("/03-domain-design/unit_")) return "domain-design";
+  if (lowerPath.endsWith("project_status.md")) return "project-status";
   if (lowerPath.includes("/99-plans/") || lowerPath.includes("_plan")) return "plan";
   if (lowerPath.includes("technology_decisions")) return "decision";
   if (lowerPath.includes("system_architecture")) return "architecture";

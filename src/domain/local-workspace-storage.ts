@@ -314,7 +314,7 @@ export interface MemoryEventLogReader {
   readEvents(workspaceRoot: string): Promise<readonly MemoryEventRecord[]>;
 }
 
-export const MEMORY_EVENT_TYPES = ["memory_indexed", "memory_removed"] as const;
+export const MEMORY_EVENT_TYPES = ["memory_indexed", "memory_removed", "memory_deleted"] as const;
 
 export type MemoryEventType = (typeof MEMORY_EVENT_TYPES)[number];
 
@@ -380,7 +380,10 @@ export function createMemoryEventRecord(
     assertText(input.text, "Indexed memory event requires text.");
   }
 
-  if (input.eventType === "memory_removed" && !hasText(input.memoryId)) {
+  if (
+    (input.eventType === "memory_removed" || input.eventType === "memory_deleted") &&
+    !hasText(input.memoryId)
+  ) {
     assertText(input.reason, "Removed memory event requires reason without memory ID.");
   }
 

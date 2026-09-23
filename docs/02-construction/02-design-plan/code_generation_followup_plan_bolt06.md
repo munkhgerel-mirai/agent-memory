@@ -3,7 +3,7 @@
 **Project:** Agent-memory
 **Date:** 2026-07-06
 **Skill:** `ai-dlc-code-generation`
-**Approval Status:** Pending human review
+**Approval Status:** Approved by user on 2026-07-27
 
 ## Purpose
 
@@ -103,21 +103,21 @@ If this plan is approved, the following implementation authorizations are includ
 
 ## Execution Checklist
 
-- [ ] Record explicit human approval of this BOLT-06 Code Generation follow-up plan.
-- [ ] Reconfirm approved inputs and verify no upstream approval has changed.
-- [ ] Reinspect the current TypeScript package/source/test baseline.
-- [ ] Add optional runtime adapter binding, status, trigger, and observation domain types.
-- [ ] Implement adapter policy validation and no-iii fallback semantics.
-- [ ] Implement trigger-to-capability mapping foundation.
-- [ ] Implement job observation publication contract foundation.
-- [ ] Add tests for optional adapter behavior, trigger mapping, governance preservation, and no concrete iii dependency boundary.
-- [ ] Add `src/docs/` fixtures only if needed for tests.
-- [ ] Run available verification checks: build, typecheck, tests.
-- [ ] Create `docs/02-construction/04-code-generation/code_generation_report_bolt06.md`.
-- [ ] Create `docs/02-construction/04-code-generation/test_results_bolt06.md`.
-- [ ] If tests/checks fail, document failures and request approval before applying non-trivial fixes.
-- [ ] Update `PROJECT_STATUS.md`.
-- [ ] Write a session log in `session-logs/`.
+- [x] Record explicit human approval of this BOLT-06 Code Generation follow-up plan.
+- [x] Reconfirm approved inputs and verify no upstream approval has changed.
+- [x] Reinspect the current TypeScript package/source/test baseline.
+- [x] Add optional runtime adapter binding, status, trigger, and observation domain types.
+- [x] Implement adapter policy validation and no-iii fallback semantics.
+- [x] Implement trigger-to-capability mapping foundation.
+- [x] Implement job observation publication contract foundation.
+- [x] Add tests for optional adapter behavior, trigger mapping, governance preservation, and no concrete iii dependency boundary.
+- [x] Add `src/docs/` fixtures only if needed for tests. (Not needed; tests construct bindings, triggers, and job runs directly.)
+- [x] Run available verification checks: build, typecheck, tests.
+- [x] Create `docs/02-construction/04-code-generation/code_generation_report_bolt06.md`.
+- [x] Create `docs/02-construction/04-code-generation/test_results_bolt06.md`.
+- [x] If tests/checks fail, document failures and request approval before applying non-trivial fixes. (One trigger-ordering assertion failed during development and was corrected before final verification; final run has no failures.)
+- [x] Update `PROJECT_STATUS.md`.
+- [x] Write a session log in `session-logs/`.
 
 ## Planned Verification
 
@@ -132,10 +132,11 @@ If this plan is approved, the following implementation authorizations are includ
 
 ## Approval Gate
 
-- Execution is blocked until the human explicitly approves this plan.
+- Approved by user on 2026-07-27. Execution of the BOLT-06 / UNIT-03 scope described here is authorized.
 - Approval of this plan authorizes only the BOLT-06 / UNIT-03 implementation described here.
 - Any concrete iii SDK dependency, MCP server, CLI binary, local HTTP server, semantic retrieval, filesystem delete/export execution, deployment work, README rewrite, new dependency, or deviation from this plan requires a new approval or approved follow-up plan.
 
 ## Execution Notes
 
 - 2026-07-06: Plan created by GitHub Copilot for human review after BOLT-05 report/test approval. No implementation, tests, dependency changes, runtime structure changes, BOLT-06 code-generation report, or BOLT-06 test-results report were created.
+- 2026-07-27: Plan approved by the user. BOLT-06 implementation executed: `src/domain/runtime-adapter-boundary.ts` added, `src/index.ts` and `package.json` updated, and `tests/runtime-adapter-boundary.test.ts` added. No dependency was added. Final verification passed with `npm run build`, `npm run typecheck`, and `npm test` (41 tests, 0 failures). BOLT-06 Code Generation Report and Test Results created and are pending human review.

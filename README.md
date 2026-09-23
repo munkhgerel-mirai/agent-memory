@@ -1,191 +1,161 @@
-# AI-DLC Project Template
+# Agent-memory
 
-A simple starter repo for the **[AI-Driven Development Lifecycle (AI-DLC)](https://prod.d13rzhkk8cj2z0.amplifyapp.com)**.
+Agent-memory is a local-first lifecycle memory system for AI-Driven Development Lifecycle (AI-DLC) workspaces. It indexes durable project artifacts, preserves provenance and approval state, and returns compact context to human operators and MCP-capable agents.
 
----
+## Release Status
 
-## What This Template Provides
+The current target is a **0.1 MCP/CLI preview**.
 
-- A ready-made folder structure for all AI-DLC phases
-- Skills that enforce plan-first and human approval gates
-- `AGENTS.md` that ties the workflow together
-- Example template documents for each phase
-- Minimal placeholder code and tests you can replace
+- The preview is evidence-ready in the current working tree; it is not packaged, tagged, published, or distributed.
+- CLI and stdio MCP surfaces are implemented.
+- Markdown artifacts and the JSONL event log are durable sources; SQLite is a rebuildable local projection.
+- Governed export and confirmation-gated memory deletion are implemented.
+- The BOLT-13 local HTTP API is deferred until a named consumer requires it.
+- US-003 lifecycle relationships and US-005 AC-003 local API access are deferred from the preview but remain required for full V1.
+- This repository is not yet published to npm and has no approved deployment scope.
 
----
+## Requirements
 
-## Quick Start
+- Node.js 22.5.0 or newer
+- npm
+- A local AI-DLC workspace containing Markdown lifecycle artifacts
 
-1. **Clone and rename** this repository.
-2. **Read** `AGENTS.md` and `PROJECT_STATUS.md` to understand how progress is tracked.
-3. **Start the agent** and run `ai-dlc-setup` to validate structure, templates, placeholders, and git readiness.
-4. **Approve** `docs/02-construction/02-design-plan/setup_plan.md`; let the agent replace project identity placeholders only as approved.
-5. **Begin the workflow:** agent proposes a checkbox plan -> human approves -> agent executes one checkbox at a time -> human validates outputs.
+## Build And Verify
 
----
+From the repository root:
 
-## Template Upgrade And Adoption
-
-**Policy Version:** v0.2.0  
-**Default Tool:** Copier  
-
-### Core Rule
-
-Template upgrades may update reusable AI-DLC methodology assets, including `session-logs/README.md`, but they must not overwrite project-owned files. In particular, root `README.md` and `.gitignore` are preserved during both Template-Adopted Project upgrades and Newly Adopting Project brownfield adoption.
-
-### Template-Adopted Project Upgrade Flow
-
-Use this flow when a project already adopted an earlier AI-DLC template version.
-
-1. Confirm the project has `.ai-dlc-template.yml` and `.copier-answers.yml`, and that `.copier-answers.yml` contains Copier's `_src_path` value.
-2. Create an upgrade branch, for example `upgrade/ai-dlc-template-v0.2.1`.
-3. Run the sync wrapper from the project root:
-
-```bash
-python tools/ai_dlc_template_sync.py update --vcs-ref v0.2.1
+```powershell
+npm ci
+npm run build
+npm run typecheck
+npm test
 ```
 
-4. Review the policy report:
-   - Project-owned changes must be blocked.
-   - `README.md` must remain unchanged.
-   - `.gitignore` must remain unchanged.
-   - `AGENTS.md` changes require manual merge.
-5. Review `.gitignore` recommendations and apply them only if approved.
-6. Run `ai-dlc-setup` in audit mode.
-7. Commit the upgrade as a single template-governance change.
+BOLT-14 focused checks are explicit because the scale fixture is intentionally larger than the ordinary regression suite:
 
-Troubleshooting:
-
-- `update` is only for Copier-managed Template-Adopted Projects. Do not run it from the `ai_dlc_template` source repository.
-- If `.copier-answers.yml` is missing or does not contain `_src_path`, use the Newly Adopting Project `copier copy --vcs-ref v0.2.1 ... .` flow first.
-- If Copier is installed but not on `PATH`, pass the executable path with `--copier-bin`, for example `python tools/ai_dlc_template_sync.py update --copier-bin "C:\path\to\copier.exe" --vcs-ref v0.2.1`.
-
-### Newly Adopting Project Brownfield Adoption Flow
-
-Use this flow when an existing project never used the AI-DLC template.
-
-Run these commands from the root of the Newly Adopting Project, not from the template repository.
-
-1. Confirm the existing project has a clean or intentionally understood git baseline:
-
-```bash
-git status --short
-copier --version
+```powershell
+npm run test:v1-readiness
+npm run test:v1-scale
 ```
 
-If unrelated changes exist, either commit them first or keep them clearly out of the adoption commit. If Copier is not installed, install it using the team's approved Python tooling before continuing.
+The scale check generates an isolated temporary workspace with at least 1,000 lifecycle artifacts and 10,000 valid event records. It reports fixture generation, rebuild, CLI retrieval, and MCP retrieval timings separately.
 
-2. Create an adoption branch from the project root:
+## CLI
 
-```bash
-git checkout -b adopt/ai-dlc-template-v0.2.1
+Build first, then invoke the local entrypoint:
+
+```powershell
+node dist/src/cli/main.js --help
+node dist/src/cli/main.js rebuild --workspace D:\path\to\workspace
+node dist/src/cli/main.js context --workspace D:\path\to\workspace
+node dist/src/cli/main.js query "search terms" --workspace D:\path\to\workspace
 ```
 
-3. Apply the AI-DLC template into the existing repository:
+Use `--json` for a single machine-readable response.
 
-```bash
-copier copy --vcs-ref v0.2.1 https://github.com/miraitechnologies/ai_dlc_template.git .
+### Commands
+
+| Command | Purpose |
+|---------|---------|
+| `rebuild` | Scan durable sources and rebuild the local SQLite projection. |
+| `context` | Return a bounded, provenance-aware startup context pack. |
+| `query` | Search lifecycle memory by text and optional filters. |
+| `inspect` | Inspect one memory record and its metadata. |
+| `export` | Write selected governed memories and provenance to a caller-selected JSON file. |
+| `delete` | Append deletion tombstones and remove selected memories from active retrieval after confirmation. |
+| `write` | Reserved in the shared capability contract; governed write execution is not implemented in this preview. |
+
+Example export:
+
+```powershell
+node dist/src/cli/main.js export MEMORY_ID `
+  --workspace D:\path\to\workspace `
+  --output memory-export.json `
+  --reason "Portable review copy"
 ```
 
-Use the project-specific answers when Copier prompts for project name, project intent, template source, template version, and template commit. For `template_version`, use `v0.2.1`; for `template_commit`, use the template commit SHA when known, otherwise `unknown`.
+Example deletion:
 
-4. Preserve existing project identity, source code, tests, root `README.md`, and root `.gitignore`.
-
-Copier is configured with `skip_if_exists` for the highest-risk project-owned paths, but the adoption branch must still be reviewed before commit. Do not accept accidental changes to root `README.md`, `.gitignore`, `PROJECT_STATUS.md`, `src/**`, or `src/tests/**` unless a human explicitly approved those project-owned edits.
-
-5. Add the AI-DLC governance layer:
-   - `AGENTS.md` through manual merge
-   - `docs/00-methodology/**`
-   - reusable `*_TEMPLATE.md` lifecycle artifacts
-   - `TEMPLATE_CHECKLIST.md`
-   - template sync metadata
-
-6. Generate `.gitignore` recommendations without editing `.gitignore` automatically:
-
-```bash
-python tools/ai_dlc_template_sync.py gitignore-report
+```powershell
+node dist/src/cli/main.js delete MEMORY_ID `
+  --workspace D:\path\to\workspace `
+  --reason "No longer active memory" `
+  --confirm
 ```
 
-Review `docs/00-methodology/gitignore_recommendations_report.md`. Apply any recommended `.gitignore` entries only as an approved project-owned change. If no `.gitignore` exists, create a minimal starter `.gitignore` only after setup approval.
+Deletion removes Agent-memory state; it does **not** modify or remove the source Markdown file. A durable tombstone prevents the deleted memory from returning on rebuild.
 
-7. Run the sync policy report against the adoption branch:
+## MCP
 
-```bash
-python tools/ai_dlc_template_sync.py check-policy --base-ref main
+The stdio MCP executable is built at `dist/src/mcp/main.js`. Start it with a workspace root:
+
+```powershell
+node dist/src/mcp/main.js --workspace D:\path\to\workspace
 ```
 
-Use the actual base branch name if it is not `main`, for example `master` or `origin/main`. The report must not show unapproved changes to project-owned files. `AGENTS.md` is expected to require manual merge review.
+The server exposes seven descriptor-generated tools:
 
-8. Run `ai-dlc-setup` in audit mode to validate required folders, root artifacts, template metadata, ownership rules, placeholders, and git readiness.
+- `get_context`
+- `query_memory`
+- `inspect_memory`
+- `rebuild_index`
+- `export_memory`
+- `delete_memory`
+- `write_memory` — advertised honestly but remains approval-required/unimplemented
 
-9. Run `ai-dlc-brownfield-discovery` before design or implementation changes so the existing codebase is documented before AI-DLC construction work begins.
+The checked-in `.vscode/mcp.json` runs the server against the open repository. After `npm run build`, use **MCP: List Servers** in VS Code, start and trust `agent-memory`, then approve tool calls from Copilot Chat Agent mode.
 
-10. Commit the adoption as a single governance change after review:
+The server writes protocol messages only to stdout. Runtime diagnostics, including Node's current `node:sqlite` experimental warning, use stderr.
 
-```bash
-git status --short
-git add AGENTS.md TEMPLATE_CHECKLIST.md .ai-dlc-template.yml .copier-answers.yml .gitignore.jinja
-git add docs/00-methodology docs/01-inception docs/02-construction docs/03-operations
-git add session-logs/README.md tools/ai_dlc_template_sync.py
-git diff --cached --name-only
-git commit -m "Adopt AI-DLC template governance"
+## Storage Model
+
+Each workspace stores derived local state under `.agent-memory/`:
+
+```text
+.agent-memory/
+  events.jsonl   append-only memory history and deletion tombstones
+  index.sqlite   rebuildable search/retrieval projection
 ```
 
-Stage only the approved adoption files. If the project already has documentation under `docs/`, inspect the cached diff before committing and unstage unrelated project docs. Do not include unrelated application changes in the adoption commit.
+Authority is split deliberately:
 
-### Conflict Handling
+- Markdown holds current lifecycle content authority.
+- JSONL holds history authority, including deliberate deletion.
+- SQLite is derived and may be deleted and rebuilt.
 
-- Keep project-owned content when conflicts involve root `README.md`, `.gitignore`, `PROJECT_STATUS.md`, `src/**`, `tests/**`, generated lifecycle artifacts, or real session log entries.
-- Treat `session-logs/README.md` as template-owned.
-- For `AGENTS.md`, merge reusable AI-DLC governance with existing project rules and keep deeper or more specific project instructions.
-- For template-owned files, prefer the new template version unless a project-specific approved addendum says otherwise.
+The state directory is excluded from workspace scanning and should remain ignored by version control.
 
-### Release Process
+## Governance And Safety
 
-1. Draft release notes under `docs/00-methodology/releases/`.
-2. Run the sync wrapper tests and compile checks.
-3. Tag the baseline release, for example `v0.1.0`.
-4. Commit governance updates.
-5. Tag the governance release, for example `v0.2.0`.
+- Context and search results preserve source path, memory category, approval status, and provenance.
+- Export and delete route through the shared governance policy.
+- Delete requires explicit confirmation evidence on CLI and MCP surfaces.
+- Secret-like durable content is blocked or redacted by the governance layer.
+- Semantic retrieval remains disabled by default and cannot outrank lifecycle-authoritative memory.
+- CLI and MCP mutations share a cross-process workspace lock.
 
----
+## Known Limitations
 
-## Repository Structure (Template)
+- Local HTTP and gRPC APIs are not implemented. BOLT-13 is deferred until a concrete consumer defines the transport and trust-boundary requirements.
+- US-003 lifecycle relationships are explicitly deferred from the preview. Types exist, but there is no extractor, persisted edge repository, or trace query; edge cleanup is therefore reported as `not_applicable` rather than falsely successful. US-003 remains required for full V1.
+- Governed `write_memory` execution is not implemented.
+- The `node:sqlite` experimental warning is visible on stderr.
+- The CLI has no `--version` flag.
+- Event-log compaction and tombstone restore/undo are not implemented.
+- iii-engine remains an optional boundary without a concrete runtime dependency.
+- Embedding providers and vector indexes remain deferred.
+- No remote authentication, multi-user tenancy, hosted storage, deployment, or npm publication is included.
 
-```
-ai_dlc_template/
-├── AGENTS.md
-├── PROJECT_STATUS.md
-├── TEMPLATE_CHECKLIST.md
-├── ai-dlc-paper.md
-├── docs/
-│   ├── 00-methodology/
-│   │   └── 01-skills/
-│   ├── 01-inception/
-│   ├── 02-construction/
-│   └── 03-operations/
-├── session-logs/
-├── src/
-│   └── placeholder_app.py
-└── tests/
-    └── test_placeholder.py
-```
+## Project Documentation
 
----
+- Current state: [`PROJECT_STATUS.md`](PROJECT_STATUS.md)
+- User stories: [`docs/01-inception/02-user-stories/all_user_stories.md`](docs/01-inception/02-user-stories/all_user_stories.md)
+- NFRs: [`docs/01-inception/03-nfrs/nfrs.md`](docs/01-inception/03-nfrs/nfrs.md)
+- Risk register: [`docs/01-inception/04-risks/risk_register.md`](docs/01-inception/04-risks/risk_register.md)
+- Architecture: [`docs/02-construction/01-architecture/system_architecture.md`](docs/02-construction/01-architecture/system_architecture.md)
+- Technology decisions: [`docs/02-construction/01-architecture/technology_decisions.md`](docs/02-construction/01-architecture/technology_decisions.md)
+- BOLT-14 plan: [`docs/02-construction/02-design-plan/code_generation_followup_plan_bolt14.md`](docs/02-construction/02-design-plan/code_generation_followup_plan_bolt14.md)
 
-## How to Use AI-DLC Here
+## Preview Boundary
 
-- **Phase 0 (Setup):** Use the setup skill to validate structure and tooling.
-- **Phase 1 (Inception):** Clarify intent, write user stories, NFRs, risks, units, and bolts.
-- **Phase 2 (Construction):** Produce architecture, domain design, logical design, and code.
-- **Phase 3 (Operations):** Define deployment, observability, and runbooks.
-
-Lifecycle documentation and AI-DLC artifacts must live in `docs/` with the phase-specific folders. Implementation code and tests must live in approved runtime and test folders such as `src/` and `tests/`.
-
----
-
-## Placeholder Notice
-
-This template intentionally avoids domain-specific content. Replace all placeholders and examples before real work begins.
-
-This template is intended to be updated and improved regularly. Comments and suggestions are welcome.
+The BOLT-14 automated evidence and report pair are approved, and Amendment 5 defers US-003 from the preview, so the `0.1 MCP/CLI preview` is evidence-ready in this working tree. It is not released or distributable until the repository history and any chosen packaging/release workflow are handled separately. Full V1 remains blocked by US-003 and the deferred local API criterion.

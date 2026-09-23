@@ -122,5 +122,5 @@ Approved by user on 2026-06-05. Generated from the approved Logical Design plan 
 | ID | Question / Trade-Off | Owner | Decision Needed By |
 |----|----------------------|-------|--------------------|
 | LD-UNIT05-OQ-001 | Which local embedding provider/model should be evaluated for v1.1? | Human / Retrieval enhancement team | v1.1 technology decision |
-| LD-UNIT05-OQ-002 | Should semantic retrieval be completely absent from v1 implementation or included as disabled experimental plumbing? | Human / Engineering | Code-generation planning |
+| LD-UNIT05-OQ-002 | Should semantic retrieval be completely absent from v1 implementation or included as disabled experimental plumbing? | Human / Engineering | Resolved by user on 2026-07-27: disabled extension boundary with ports, fusion, conflict, and delete-cleanup contracts and no embedding provider. See `docs/02-construction/02-design-plan/bolt06_review_approval_plan.md`. |
 | LD-UNIT05-OQ-003 | What evidence should trigger semantic-vs-approved-memory conflict review? | Retrieval enhancement team | Before semantic implementation |
