@@ -6,7 +6,7 @@
 
 ## Approval Status
 
-Pending human review.
+Approved by user on 2026-07-06.
 
 ## Verification Summary
 
@@ -39,6 +39,6 @@ Pending human review.
 
 ## Follow-Ups
 
-- Submit BOLT-05 Test Results for human review and approval.
+- BOLT-05 Test Results approved on 2026-07-06.
 - Keep actual MCP server, CLI binary/parser, local HTTP API server, iii adapter, semantic retrieval, filesystem delete/export execution, deployment, and README rewrite behind later approved plans.
 - Preserve descriptor-map contract tests when implementing adapters so surface behavior cannot drift.

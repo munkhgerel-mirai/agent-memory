@@ -18,7 +18,7 @@ Key Objectives:
 ## Current Status
 
 **Phase:** CONSTRUCTION - CODE GENERATION  
-**Status:** BOLT-05 CODE GENERATION COMPLETE - PENDING HUMAN REVIEW
+**Status:** BOLT-06 CODE GENERATION FOLLOW-UP PLAN PENDING HUMAN REVIEW
 
 ---
 
@@ -91,15 +91,18 @@ Key Objectives:
 - BOLT-05 final verification passed on 2026-07-06: `npm run build`, `npm run typecheck`, and `npm test` completed successfully with 33 tests.
 - BOLT-05 Code Generation Report created in `docs/02-construction/04-code-generation/code_generation_report_bolt05.md`.
 - BOLT-05 Test Results created in `docs/02-construction/04-code-generation/test_results_bolt05.md`.
+- BOLT-05 Code Generation Report reviewed and approved by the user on 2026-07-06.
+- BOLT-05 Test Results reviewed and approved by the user on 2026-07-06.
+- BOLT-06 / UNIT-03 Code Generation follow-up plan created in `docs/02-construction/02-design-plan/code_generation_followup_plan_bolt06.md` on 2026-07-06.
 
 ---
 
 ## Next Steps
 
-1. Review `docs/02-construction/04-code-generation/code_generation_report_bolt05.md`.
-2. Review `docs/02-construction/04-code-generation/test_results_bolt05.md`.
-3. Approve the BOLT-05 Code Generation slice or request changes.
-4. Keep MCP server, CLI binary, local HTTP API server, iii adapter, semantic retrieval, deployment, and README rewrite work behind later approved plans.
+1. Review `docs/02-construction/02-design-plan/code_generation_followup_plan_bolt06.md`.
+2. Approve the BOLT-06 follow-up plan or request changes.
+3. Begin BOLT-06 implementation only after explicit human approval of the follow-up plan.
+4. Keep concrete iii SDK dependency, MCP server, CLI binary, local HTTP API server, semantic retrieval, deployment, and README rewrite work behind later approved plans.
 
 ---
 
@@ -107,6 +110,6 @@ Key Objectives:
 
 - `README.md` still presents the repository as the AI-DLC template and should be made project-specific before external use.
 - Future technology changes require a recorded Human Selection Gate before ADR approval or downstream use.
-- Further code and test generation beyond BOLT-05 remains blocked until BOLT-05 review is approved and a later follow-up plan is approved.
+- Further code and test generation beyond BOLT-05 remains blocked until the BOLT-06 follow-up plan is approved.
 - Deployment planning remains deferred until a deployment scope is selected through an approved AI-DLC deployment plan.
 - Product/runtime documentation assets must not be added to root `docs/`; use `src/docs/` instead.

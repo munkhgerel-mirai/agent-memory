@@ -5,7 +5,7 @@
 
 ## Approval Status
 
-Pending human review. Generated from approved `docs/02-construction/02-design-plan/code_generation_followup_plan_bolt05.md`.
+Approved by user on 2026-07-06. Generated from approved `docs/02-construction/02-design-plan/code_generation_followup_plan_bolt05.md`.
 
 ## Summary
 
@@ -79,6 +79,6 @@ Pending human review. Generated from approved `docs/02-construction/02-design-pl
 
 ## Follow-Ups
 
-- Submit BOLT-05 Code Generation Report and Test Results for human review and approval.
+- BOLT-05 Code Generation Report and Test Results approved on 2026-07-06; no BOLT-05 review artifacts remain pending.
 - Keep actual MCP server, CLI binary/parser, local HTTP API server, iii adapter, semantic retrieval, filesystem delete/export execution, deployment, and README rewrite behind later approved plans.
 - Plan BOLT-06 / UNIT-03 iii adapter work separately before adding runtime triggers or observability publication.
