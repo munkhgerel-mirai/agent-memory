@@ -18,7 +18,7 @@ Key Objectives:
 ## Current Status
 
 **Phase:** CONSTRUCTION - CODE GENERATION PLANNING
-**Status:** 0.1 MCP/CLI PREVIEW EVIDENCE-READY IN WORKING TREE; RELEASE/DISTRIBUTION PENDING
+**Status:** UNIT-02 DEAD ASYNC PORT CLEANUP REVIEWED AND APPROVED; CHANGES UNCOMMITTED
 
 ---
 
@@ -240,17 +240,22 @@ Key Objectives:
 - User selected US-003 deferral from the `0.1 MCP/CLI preview` on 2026-09-23. `preview_scope_addendum_us003_defer.md` records the proposed consequences; the deferral is not binding until that plan is explicitly approved.
 - User approved `preview_scope_addendum_us003_defer.md` on 2026-09-23. Amendment 5 now defers US-003 from the preview while retaining it for full V1.
 - `bolt14_release_verdict_addendum_us003_deferred.md` supersedes only the current preview verdict: all retained preview evidence passes, so the `0.1 MCP/CLI preview` is evidence-ready in the current working tree. No release, packaging, tag, publication, or distribution action was performed.
+- Preview baseline was committed as `28dd9b2` (`0.1 MCP/CLI preview`); release, tagging, and publication remain intentionally deferred.
+- `code_generation_followup_plan_unit02_port_cleanup.md` proposes resolving the next roadmap item by removing the unused, Promise-based `DurableSourceReader` and `MemoryEventLogReader` declarations. No cleanup implementation is authorized yet.
+- User selected UNIT02-PORT-Q1 Option A and approved the UNIT-02 port cleanup plan on 2026-09-23. The narrow behavior-preserving cleanup is in progress.
+- UNIT-02 port cleanup completed on 2026-09-23: removed only the unused `DurableSourceReader` and `MemoryEventLogReader` declarations; no runtime behavior, dependency, package, release, tag, or publication change was made.
+- Cleanup verification passed: build/typecheck clean, focused UNIT-02 suites 25/25, full regression 120/120, preview readiness 2/2, and zero source/test references to the removed types. Report pair is pending human review.
+- UNIT-02 cleanup Code Generation Report and Test Results approved by the user on 2026-09-23. The cleanup review gate is complete; the cleanup changes remain uncommitted.
 - **US-001 is not yet satisfiable on a realistic workspace, discovered by running the finished CLI against this repository.** `agent-memory context` returns one artifact and omits 99, without the goal, phase, blockers, or next steps. `PROJECT_STATUS.md` is ~6459 tokens against a 2000-token budget and ranks 9th of 105, and the top two candidates are 3233 and 6359 tokens. `buildContextPack` includes whole documents, so the first artifact that fits consumes most of the budget. This is a BOLT-03 design gap that BOLT-10 surfaced rather than caused.
 
 ---
 
 ## Next Steps
 
-1. Decide whether to create an approval-gated repository consolidation/commit plan so the evidence-ready working tree becomes reproducible from Git history.
-2. Decide the fate of the unimplemented UNIT-02 async ports `DurableSourceReader` and `MemoryEventLogReader` in a separate later plan.
-3. Implement US-003 before full V1 through a separate approved plan.
-4. Reopen BOLT-13 only for a named consumer with concrete transport and trust-boundary requirements.
-5. Keep deployment and npm publication behind later approved plans.
+1. Commit the approved UNIT-02 cleanup and its review artifacts when ready.
+2. Implement US-003 before full V1 through a separate approved plan.
+3. Reopen BOLT-13 only for a named consumer with concrete transport and trust-boundary requirements.
+4. Keep release, tagging, deployment, and npm publication deferred.
 
 ---
 

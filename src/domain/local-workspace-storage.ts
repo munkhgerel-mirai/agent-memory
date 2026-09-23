@@ -305,15 +305,6 @@ export function summarizeRebuildOutcome(
   };
 }
 
-export interface DurableSourceReader {
-  scanSources(workspaceRoot: string): Promise<readonly DurableSourceObservation[]>;
-  readSource(workspacePath: string): Promise<DurableSourceObservation>;
-}
-
-export interface MemoryEventLogReader {
-  readEvents(workspaceRoot: string): Promise<readonly MemoryEventRecord[]>;
-}
-
 export const MEMORY_EVENT_TYPES = ["memory_indexed", "memory_removed", "memory_deleted"] as const;
 
 export type MemoryEventType = (typeof MEMORY_EVENT_TYPES)[number];
